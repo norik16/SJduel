@@ -15,6 +15,7 @@ public class Victory extends AppCompatActivity {
 
     String scoreTOP;
     String scoreBOT;
+    String winner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,9 +31,8 @@ public class Victory extends AppCompatActivity {
         if(bundle != null) {
             scoreBOT = (String) bundle.get("scoreBOT");
             scoreTOP = (String) bundle.get("scoreTOP");
-
-
-
+            winner = (String) bundle.get("winner");
+            Toast.makeText(getApplicationContext(), "BOT: " + scoreBOT + " TOP: " + scoreTOP + " winner: " + winner, Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(getApplicationContext(), "Sorry jako, problém", Toast.LENGTH_SHORT).show();
         }
