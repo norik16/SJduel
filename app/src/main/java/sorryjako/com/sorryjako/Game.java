@@ -46,7 +46,7 @@ public class Game extends AppCompatActivity {
     Database database;
     Cursor cursor;
 
-    static final int numberOfLines = 20;
+    static final int numberOfLines = 100;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
