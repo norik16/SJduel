@@ -1,34 +1,169 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/menu"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="sorryjako.com.sorryjako.Main"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp"
-    android:weightSum="1"
+    android:weightSum="3"
     android:orientation="vertical">
 
-    <Button
-        android:id="@+id/id_victory_restart_BT"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="218dp"
-        android:text="Button" />
+    <LinearLayout
+        android:id="@+id/id_victory_layout1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:weightSum="3"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/te"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/id_victory_restart_BT"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="27dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Sorry jako" />
-</RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/id_victory_elseTOP_TV"
+                android:layout_width="match_parent"
+                android:textSize="16dp"
+                android:textColor="#27286D"
+                android:paddingBottom="10dp"
+                android:text="x"
+                android:rotation="180"
+                android:gravity="center"
+                android:layout_height="match_parent"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/id_victory_scoreTOP_TV"
+                android:layout_width="match_parent"
+                android:textColor="#27286D"
+                android:gravity="center"
+                android:text="x"
+                android:rotation="180"
+                android:textSize="40dp"
+                android:paddingTop="10dp"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/id_victory_winTOP_TV"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="bottom"
+                android:gravity="center"
+                android:rotation="180"
+                android:textSize="25dp"
+                android:textColor="#27286D"
+                android:text="XXXXAXXXXX"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:weightSum="2"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:layout_gravity="center"
+        android:background="@mipmap/bg_blue"
+        android:orientation="vertical">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:layout_height="match_parent">
+
+            <ImageButton
+                android:id="@+id/id_victory_restart_BT"
+                android:layout_width="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_height="wrap_content"
+                android:background="#27286D"
+                app:srcCompat="@mipmap/play"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true" />
+        </RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="RESTART"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:textColor="#FFFFFF"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:weightSum="3"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/id_victory_winBOT_TV"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="bottom"
+                android:gravity="center"
+                android:textSize="25dp"
+                android:textColor="#27286D"
+                android:paddingTop="10dp"
+                android:text="XXXXXXXXX"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/id_victory_scoreBOT_TV"
+                android:layout_width="match_parent"
+                android:textColor="#27286D"
+                android:gravity="center"
+                android:text="x"
+                android:textSize="40dp"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/id_victory_elseBOT_TV"
+                android:layout_width="match_parent"
+                android:textSize="16dp"
+                android:textColor="#27286D"
+                android:text="x"
+                android:paddingBottom="10dp"
+                android:gravity="center"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

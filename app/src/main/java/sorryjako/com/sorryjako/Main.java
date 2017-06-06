@@ -36,6 +36,7 @@ public class Main extends AppCompatActivity {
         if(requestCode == 1) {
             if(resultCode == RESULT_OK) {
                 Intent ii =new Intent(getApplicationContext(), Victory.class);
+                ii.putExtra("winner", data.getStringExtra("winner"));
                 ii.putExtra("scoreTOP", data.getStringExtra("scoreTOP"));
                 ii.putExtra("scoreBOT", data.getStringExtra("scoreBOT"));
                 startActivityForResult(ii, 2);

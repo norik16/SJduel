@@ -188,15 +188,6 @@ public class Game extends AppCompatActivity {
         }
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(requestCode == 1) {
-            if(resultCode == RESULT_OK) {
-                setResult(RESULT_OK);
-                finish();
-            }
-        }
-    }
 
     private void addScore(String side) {
         if (side.equals("TOP")) {
@@ -218,14 +209,16 @@ public class Game extends AppCompatActivity {
 
         if (scoreTOP >= 10) {
             Intent i = new Intent();
-            i.putExtra("scoreTOP", scoreTOP);
-            i.putExtra("scoreBOT", scoreBOT);
+            i.putExtra("winner", "A");
+            i.putExtra("scoreTOP", Integer.toString(scoreTOP));
+            i.putExtra("scoreBOT", Integer.toString(scoreBOT));
             setResult(RESULT_OK, i);
             finish();
         } else if(scoreBOT >= 10){
             Intent ii = new Intent();
-            ii.putExtra("scoreTOP", scoreTOP);
-            ii.putExtra("scoreBOT", scoreBOT);
+            ii.putExtra("winner", "B");
+            ii.putExtra("scoreTOP", Integer.toString(scoreTOP));
+            ii.putExtra("scoreBOT", Integer.toString(scoreBOT));
             setResult(RESULT_OK, ii);
             finish();
         }
