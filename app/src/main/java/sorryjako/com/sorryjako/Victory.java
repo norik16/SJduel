@@ -8,12 +8,13 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 public class Victory extends AppCompatActivity {
 
     static MediaPlayer mp;
-    Button restart;
+    ImageButton restart;
 
     String scoreTOP;
     String scoreBOT;
@@ -42,7 +43,7 @@ public class Victory extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Sorry jako, problém", Toast.LENGTH_SHORT).show();
         }
 
-        restart = (Button) findViewById(R.id.id_victory_restart_BT);
+        restart = (ImageButton) findViewById(R.id.id_victory_restart_BT);
         restart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
