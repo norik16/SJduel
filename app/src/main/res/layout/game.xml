@@ -6,26 +6,26 @@
     android:id="@+id/linear"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="sorryjako.com.sorryjako.Main"
-    android:weightSum="4"
     android:background="#FFFF"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:weightSum="4"
+    tools:context="sorryjako.com.sorryjako.Main">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
+        android:orientation="horizontal"
         android:paddingTop="16dp"
-        android:weightSum="2"
-        android:orientation="horizontal">
+        android:weightSum="2">
 
         <ImageButton
             android:id="@+id/id_game_babisTOP_BT"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:rotation="180"
-            android:background="#FFF"
             android:layout_weight="1"
+            android:background="#FFF"
+            android:rotation="180"
             android:scaleType="centerInside"
             app:srcCompat="@mipmap/babis_close" />
 
@@ -33,9 +33,9 @@
             android:id="@+id/id_game_zemanTOP_BT"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:rotation="180"
             android:layout_weight="1"
             android:background="#FFFF"
+            android:rotation="180"
             android:scaleType="centerInside"
             app:srcCompat="@mipmap/zeman_close" />
     </LinearLayout>
@@ -44,59 +44,56 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:weightSum="2"
+        android:orientation="vertical"
         android:rotation="180"
-        android:orientation="vertical">
+        android:weightSum="2">
 
 
         <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="-5dp"
             android:layout_weight="1"
             android:background="@mipmap/bg_red"
-            android:layout_marginTop="-5dp"
-            android:gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:gravity="center">
 
             <TextView
-                android:textColor="#FFFFFF"
-                android:textSize="20dp"
-                android:layout_marginBottom="5dp"
-                android:gravity="center"
-                android:paddingTop="15dp"
                 android:id="@+id/id_game_textTOP_TV"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
                 android:ems="10"
+                android:gravity="center"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                android:text="YYYY" />
+                android:paddingTop="15dp"
+                android:text="YYYY"
+                android:textColor="#FFFFFF"
+                android:textSize="20dp" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_weight="1"
             android:layout_height="match_parent"
-            android:paddingTop="16dp"
+            android:layout_weight="1"
             android:paddingLeft="16dp"
-            android:paddingRight="16dp">
-
-            <TextView
-                android:id="@+id/id_game_hisScoreTOP_TV"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_above="@+id/id_game_textTOP_TV"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:ems="10"
-                android:textColor="#EF0000"
-                android:textSize="20dp"
-                android:textStyle="bold"
-
-                android:text="Sorry jako" />
+            android:paddingRight="16dp"
+            android:paddingTop="16dp">
 
             <TextView
                 android:id="@+id/id_game_scoreTOP_TV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:text="Sorry jako"
+                android:textColor="#EF0000"
+                android:textSize="20dp"
+
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/id_game_hisScoreTOP_TV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
@@ -123,27 +120,27 @@
 
 
         <LinearLayout
-            android:layout_weight="1"
-            android:layout_marginBottom="-5dp"
-            android:background="@mipmap/bg_blue"
-            android:gravity="center"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_marginBottom="-5dp"
+            android:layout_weight="1"
+            android:background="@mipmap/bg_blue"
+            android:gravity="center">
 
             <TextView
                 android:id="@+id/id_game_textBOT_TV"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:textSize="20dp"
-                android:layout_marginBottom="8dp"
                 android:layout_centerHorizontal="true"
+                android:layout_marginBottom="8dp"
                 android:ems="10"
+                android:gravity="center"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                android:gravity="center"
                 android:paddingTop="15dp"
+                android:text="XXXX"
                 android:textColor="#FFFFFF"
-                android:text="XXXX" />
+                android:textSize="20dp" />
 
 
         </LinearLayout>
@@ -153,8 +150,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:paddingLeft="16dp"
-            android:paddingTop="16dp"
-            android:paddingRight="16dp">
+            android:paddingRight="16dp"
+            android:paddingTop="16dp">
 
 
             <TextView
@@ -185,8 +182,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal"
         android:layout_weight="1"
+        android:orientation="horizontal"
         android:paddingBottom="16dp"
         android:weightSum="2">
 

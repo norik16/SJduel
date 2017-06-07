@@ -4,12 +4,14 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
+import android.view.ViewPropertyAnimator;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -25,10 +27,52 @@ import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.TimeUnit;
 
 public class Game extends AppCompatActivity {
+    static final int numberOfLines = 100;
+    static final int globalDelay = 250;
+    static final int facesFloatingPeriod = 1200;
+    static final float facesFloatingFactor = 0.06f;
     ImageButton babisTOP;
     ImageButton babisBOT;
     ImageButton zemanTOP;
     ImageButton zemanBOT;
+    final Runnable biggerFaces = new Runnable() {
+        @Override
+        public void run() {
+            makeBigger(babisTOP.animate());
+            makeBigger(babisBOT.animate());
+            makeBigger(zemanTOP.animate());
+            makeBigger(zemanBOT.animate());
+        }
+
+        private void makeBigger(ViewPropertyAnimator a) {
+            a.scaleXBy(facesFloatingFactor);
+            a.scaleYBy(facesFloatingFactor);
+            a.setDuration(facesFloatingPeriod);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                a.withEndAction(smallerFaces);
+            }
+            a.start();
+        }
+    };
+    final Runnable smallerFaces = new Runnable() {
+        @Override
+        public void run() {
+            makeBigger(babisTOP.animate());
+            makeBigger(babisBOT.animate());
+            makeBigger(zemanTOP.animate());
+            makeBigger(zemanBOT.animate());
+        }
+
+        private void makeBigger(ViewPropertyAnimator a) {
+            a.scaleXBy(-facesFloatingFactor);
+            a.scaleYBy(-facesFloatingFactor);
+            a.setDuration(facesFloatingPeriod);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                a.withEndAction(biggerFaces);
+            }
+            a.start();
+        }
+    };
     TextView textTOP;
     TextView textBOT;
     TextView tScoreTOP;
@@ -36,19 +80,14 @@ public class Game extends AppCompatActivity {
     TextView tScoreHisTOP;
     TextView tScoreHisBOT;
     LinearLayout linearLayout;
-
     int scoreTOP;
     int scoreBOT;
     int lastLine;
     int[] usedLines;
     String actPerson;
-
     SQLiteDatabase sqLiteDatabase;
     Database database;
     Cursor cursor;
-
-    static final int numberOfLines = 100;
-    static final int globalDelay = 250;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -139,10 +178,11 @@ public class Game extends AppCompatActivity {
                 getLine("zemanBOT");
             }
         });
-        
+
+        biggerFaces.run();
+
         getLine();
     }
-
 
     protected void getLine() {
         getLine("nothing");
@@ -233,6 +273,14 @@ public class Game extends AppCompatActivity {
                         textBOT.setText(cursor.getString(0));
                         actPerson = cursor.getString(1);
                         usedLines[finalId] = 1;
+
+                        if (textBOT.length() > 60) {
+                            textBOT.setTextSize(16);
+                            textTOP.setTextSize(16);
+                        } else {
+                            textBOT.setTextSize(20);
+                            textTOP.setTextSize(20);
+                        }
                     }
                 }.start();
             } else {
