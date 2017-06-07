@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
+import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -47,6 +48,7 @@ public class Game extends AppCompatActivity {
     Cursor cursor;
 
     static final int numberOfLines = 100;
+    static final int globalDelay = 250;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +76,9 @@ public class Game extends AppCompatActivity {
         tScoreTOP.setText("0");
         tScoreHisBOT.setText("0");
         tScoreHisTOP.setText("0");
+        textBOT.setText("Sorry Jako");
+        textTOP.setText("Sorry Jako");
+        actPerson = "B";
 
         lastLine = 2;
         scoreTOP = 0;
@@ -96,29 +101,8 @@ public class Game extends AppCompatActivity {
                     addScore("TOP");
                 else {
                     addScore("BOT");
-//                    babisTOP.setImageResource(R.mipmap.babis_open);
-//                    babisTOP.invalidate();
-//                    try {
-//                        TimeUnit.SECONDS.sleep(1);
-//                    } catch (InterruptedException e) {
-//                        e.printStackTrace();
-//                    }
-//                    babisTOP.setImageResource(R.mipmap.babis_close);
-//                    try {
-//                        tScoreTOP.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 30);
-//                        for (int i = 0; i < 10; i++) {
-//                            TimeUnit.MILLISECONDS.sleep(100);
-//                            babisTOP.setImageResource(R.mipmap.babis_open);
-//                            TimeUnit.MILLISECONDS.sleep(100);
-//                            babisTOP.setImageResource(R.mipmap.babis_close);
-//                        }
-//                        tScoreTOP.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 20);
-//                    } catch (InterruptedException e) {
-//                        Log.e("Game/clicked", "Babish exeption");
-//                        e.printStackTrace();
-//                    }
                 }
-                getLine();
+                getLine("babisTOP");
             }
         });
 
@@ -130,7 +114,7 @@ public class Game extends AppCompatActivity {
                     addScore("BOT");
                 else
                     addScore("TOP");
-                getLine();
+                getLine("babisBOT");
             }
         });
 
@@ -141,7 +125,7 @@ public class Game extends AppCompatActivity {
                     addScore("BOT");
                 else
                     addScore("TOP");
-                getLine();
+                getLine("zemanTOP");
             }
         });
 
@@ -152,13 +136,19 @@ public class Game extends AppCompatActivity {
                     addScore("TOP");
                 else
                     addScore("BOT");
-                getLine();
+                getLine("zemanBOT");
             }
         });
+        
         getLine();
     }
 
+
     protected void getLine() {
+        getLine("nothing");
+    }
+
+    protected void getLine(final String person) {
         Log.e("Game/getLine", "entering...");
 
         Integer id;
@@ -180,11 +170,78 @@ public class Game extends AppCompatActivity {
                 cursor.moveToFirst();
             }
 
-            lastLine = cursor.getInt(2);
-            textTOP.setText(cursor.getString(0));
-            textBOT.setText(cursor.getString(0));
-            actPerson = cursor.getString(1);
-            usedLines[id] = 1;
+            Log.e("Game/getLine", person);
+
+            if (! "nothing".equals(person)) {
+                zemanBOT.setEnabled(false);
+                zemanTOP.setEnabled(false);
+                babisBOT.setEnabled(false);
+                babisTOP.setEnabled(false);
+
+                final Integer finalId = id;
+                new CountDownTimer(globalDelay, globalDelay/3) {
+
+                    @Override
+                    public void onTick(long millisUntilFinished) {
+                        if (millisUntilFinished / (globalDelay/3) % 2 == 0)
+                            switch (person) {
+                                case "babisTOP":
+                                    babisTOP.setImageResource(R.mipmap.babis_open);
+                                    break;
+                                case "babisBOT":
+                                    babisBOT.setImageResource(R.mipmap.babis_open);
+                                    break;
+                                case "zemanTOP":
+                                    zemanTOP.setImageResource(R.mipmap.zeman_open);
+                                    break;
+                                case "zemanBOT":
+                                    zemanBOT.setImageResource(R.mipmap.zeman_open);
+                                    break;
+                            }
+                        else
+                            switch (person) {
+                                case "babisTOP":
+                                    babisTOP.setImageResource(R.mipmap.babis_close);
+                                    break;
+                                case "babisBOT":
+                                    babisBOT.setImageResource(R.mipmap.babis_close);
+                                    break;
+                                case "zemanTOP":
+                                    zemanTOP.setImageResource(R.mipmap.zeman_close);
+                                    break;
+                                case "zemanBOT":
+                                    zemanBOT.setImageResource(R.mipmap.zeman_close);
+                                    break;
+                            }
+                        Log.e("Game/clock", "ticked");
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        babisTOP.setImageResource(R.mipmap.babis_close);
+                        babisBOT.setImageResource(R.mipmap.babis_close);
+                        zemanTOP.setImageResource(R.mipmap.zeman_close);
+                        zemanBOT.setImageResource(R.mipmap.zeman_close);
+
+                        zemanBOT.setEnabled(true);
+                        zemanTOP.setEnabled(true);
+                        babisBOT.setEnabled(true);
+                        babisTOP.setEnabled(true);
+
+                        lastLine = cursor.getInt(2);
+                        textTOP.setText(cursor.getString(0));
+                        textBOT.setText(cursor.getString(0));
+                        actPerson = cursor.getString(1);
+                        usedLines[finalId] = 1;
+                    }
+                }.start();
+            } else {
+                lastLine = cursor.getInt(2);
+                textTOP.setText(cursor.getString(0));
+                textBOT.setText(cursor.getString(0));
+                actPerson = cursor.getString(1);
+                usedLines[id] = 1;
+            }
         }
     }
 
@@ -198,13 +255,6 @@ public class Game extends AppCompatActivity {
             scoreBOT++;
             tScoreBOT.setText(String.format(Locale.getDefault(), "%3d", scoreBOT));
             tScoreHisTOP.setText(String.format(Locale.getDefault(), "%3d", scoreBOT));
-        }
-
-        try {
-            Thread.sleep(250);
-            //TimeUnit.MILLISECONDS.sleep(250);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
         }
 
         if (scoreTOP >= 10) {
