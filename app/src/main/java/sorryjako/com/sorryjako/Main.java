@@ -1,15 +1,19 @@
 package sorryjako.com.sorryjako;
 
 import android.content.Intent;
+import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewPropertyAnimator;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
 
 public class Main extends AppCompatActivity {
+    static final int floatingPeriod = 1000;
+    static final float floatingFactor = 0.1f;
 
     ImageButton play;
 
@@ -29,7 +33,41 @@ public class Main extends AppCompatActivity {
                 startActivityForResult(i, 1);
             }
         });
+
+        biggerFaces.run();
     }
+    final Runnable biggerFaces = new Runnable() {
+        @Override
+        public void run() {
+            makeBigger(play.animate());
+        }
+
+        private void makeBigger(ViewPropertyAnimator a) {
+            a.scaleXBy(floatingFactor);
+            a.scaleYBy(floatingFactor);
+            a.setDuration(floatingPeriod);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                a.withEndAction(smallerFaces);
+            }
+            a.start();
+        }
+    };
+    final Runnable smallerFaces = new Runnable() {
+        @Override
+        public void run() {
+            makeBigger(play.animate());
+        }
+
+        private void makeBigger(ViewPropertyAnimator a) {
+            a.scaleXBy(-floatingFactor);
+            a.scaleYBy(-floatingFactor);
+            a.setDuration(floatingPeriod);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                a.withEndAction(biggerFaces);
+            }
+            a.start();
+        }
+    };
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

@@ -74,8 +74,9 @@ public class Game extends AppCompatActivity {
             a.start();
         }
     };
-    TextView textTOP;
-    TextView textBOT;
+
+    AutoResizeTextView textTOP;
+    AutoResizeTextView textBOT;
     TextView tScoreTOP;
     TextView tScoreBOT;
     TextView tScoreHisTOP;
@@ -108,8 +109,8 @@ public class Game extends AppCompatActivity {
         zemanTOP = (ImageButton) findViewById(R.id.id_game_zemanTOP_BT);
         zemanBOT = (ImageButton) findViewById(R.id.id_game_zemanBOT_BT);
 
-        textBOT = (TextView) findViewById(R.id.id_game_textBOT_TV);
-        textTOP = (TextView) findViewById(R.id.id_game_textTOP_TV);
+        textBOT = (AutoResizeTextView) findViewById(R.id.id_game_textBOT_TV);
+        textTOP = (AutoResizeTextView) findViewById(R.id.id_game_textTOP_TV);
         tScoreBOT = (TextView) findViewById(R.id.id_game_scoreBOT_TV);
         tScoreTOP = (TextView) findViewById(R.id.id_game_scoreTOP_TV);
         tScoreHisBOT = (TextView) findViewById(R.id.id_game_hisScoreBOT_TV);
@@ -296,14 +297,6 @@ public class Game extends AppCompatActivity {
                         textBOT.setText(cursor.getString(0));
                         actPerson = cursor.getString(1);
                         usedLines[finalId] = 1;
-
-                        if (textBOT.length() > 54) {
-                            textBOT.setTextSize(16);
-                            textTOP.setTextSize(16);
-                        } else {
-                            textBOT.setTextSize(20);
-                            textTOP.setTextSize(20);
-                        }
                     }
                 }.start();
             } else {

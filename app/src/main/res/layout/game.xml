@@ -57,7 +57,7 @@
             android:background="@mipmap/bg_red"
             android:gravity="center">
 
-            <TextView
+            <sorryjako.com.sorryjako.AutoResizeTextView
                 android:id="@+id/id_game_textTOP_TV"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -127,7 +127,7 @@
             android:background="@mipmap/bg_blue"
             android:gravity="center">
 
-            <TextView
+            <sorryjako.com.sorryjako.AutoResizeTextView
                 android:id="@+id/id_game_textBOT_TV"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

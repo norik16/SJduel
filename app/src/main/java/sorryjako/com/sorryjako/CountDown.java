@@ -3,6 +3,7 @@ package sorryjako.com.sorryjako;
 import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
@@ -23,10 +24,7 @@ public class CountDown extends AppCompatActivity {
 
     int lastChange = countFrom;
 
-    Animation a;
-    ViewPropertyAnimator popup, popdown;
-//    AnimationSet set = new AnimationSet(true);
-
+    static MediaPlayer mp;
     TextView count;
 
 
@@ -34,6 +32,8 @@ public class CountDown extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.count_down);
+
+        mp = MediaPlayer.create(getApplicationContext(), R.raw.next_question);
 
         count = (TextView) findViewById(R.id.id_countdown_count_VT);
 
@@ -47,6 +47,7 @@ public class CountDown extends AppCompatActivity {
         final Runnable popUp = new Runnable() {
             @Override
             public void run() {
+                mp.start();
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                     count.animate().setDuration(0).scaleXBy(0.5f).scaleYBy(0.5f).withEndAction(popDown);
                 }
