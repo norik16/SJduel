@@ -32,29 +32,11 @@ public class Game extends AppCompatActivity {
     static final int globalDelay = 250;
     static final int facesFloatingPeriod = 1200;
     static final float facesFloatingFactor = 0.06f;
+    static MediaPlayer mp;
     ImageButton babisTOP;
     ImageButton babisBOT;
     ImageButton zemanTOP;
     ImageButton zemanBOT;
-    final Runnable biggerFaces = new Runnable() {
-        @Override
-        public void run() {
-            makeBigger(babisTOP.animate());
-            makeBigger(babisBOT.animate());
-            makeBigger(zemanTOP.animate());
-            makeBigger(zemanBOT.animate());
-        }
-
-        private void makeBigger(ViewPropertyAnimator a) {
-            a.scaleXBy(facesFloatingFactor);
-            a.scaleYBy(facesFloatingFactor);
-            a.setDuration(facesFloatingPeriod);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                a.withEndAction(smallerFaces);
-            }
-            a.start();
-        }
-    };
     final Runnable smallerFaces = new Runnable() {
         @Override
         public void run() {
@@ -74,6 +56,25 @@ public class Game extends AppCompatActivity {
             a.start();
         }
     };
+    final Runnable biggerFaces = new Runnable() {
+        @Override
+        public void run() {
+            makeBigger(babisTOP.animate());
+            makeBigger(babisBOT.animate());
+            makeBigger(zemanTOP.animate());
+            makeBigger(zemanBOT.animate());
+        }
+
+        private void makeBigger(ViewPropertyAnimator a) {
+            a.scaleXBy(facesFloatingFactor);
+            a.scaleYBy(facesFloatingFactor);
+            a.setDuration(facesFloatingPeriod);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                a.withEndAction(smallerFaces);
+            }
+            a.start();
+        }
+    };
     TextView textTOP;
     TextView textBOT;
     TextView tScoreTOP;
@@ -89,10 +90,6 @@ public class Game extends AppCompatActivity {
     SQLiteDatabase sqLiteDatabase;
     Database database;
     Cursor cursor;
-
-    static MediaPlayer mp;
-    static MediaPlayer mpZeman;
-    static MediaPlayer mpBabis;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -124,11 +121,8 @@ public class Game extends AppCompatActivity {
         textTOP.setText("Sorry Jako");
         actPerson = "B";
 
-        mp = MediaPlayer.create(getApplicationContext(), R.raw.next_question);
-        mp.start();
-
-        mpZeman = MediaPlayer.create(getApplicationContext(), R.raw.zeman);
-        mpBabis = MediaPlayer.create(getApplicationContext(), R.raw.babis);
+//        mp = MediaPlayer.create(getApplicationContext(), R.raw.next_question);
+//        mp.start();
 
         lastLine = 2;
         scoreTOP = 0;
@@ -147,11 +141,9 @@ public class Game extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Log.e("Game/onClick", "clicked...");
-                if (actPerson.equals("B")) {
+                if (actPerson.equals("B"))
                     addScore("TOP");
-
-                } else {
-                    mpBabis.start();
+                else {
                     addScore("BOT");
                 }
                 getLine("babisTOP");
@@ -162,14 +154,10 @@ public class Game extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Log.e("Game/onClick", "clicked...");
-                if (actPerson.equals("B"))  {
+                if (actPerson.equals("B"))
                     addScore("BOT");
-                }
-                else{
-                    mpBabis.start();
+                else
                     addScore("TOP");
-                }
-
                 getLine("babisBOT");
             }
         });
@@ -177,12 +165,10 @@ public class Game extends AppCompatActivity {
         zemanTOP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (actPerson.equals("B")) {
+                if (actPerson.equals("B"))
                     addScore("BOT");
-                    mpZeman.start();
-                } else{
+                else
                     addScore("TOP");
-                }
                 getLine("zemanTOP");
             }
         });
@@ -190,10 +176,8 @@ public class Game extends AppCompatActivity {
         zemanBOT.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (actPerson.equals("B")) {
+                if (actPerson.equals("B"))
                     addScore("TOP");
-                    mpZeman.start();
-                }
                 else
                     addScore("BOT");
                 getLine("zemanBOT");
@@ -275,7 +259,6 @@ public class Game extends AppCompatActivity {
                                     break;
                             }
                         Log.e("Game/clock", "ticked");
-                        mp.start();
                     }
 
                     @Override
@@ -296,7 +279,7 @@ public class Game extends AppCompatActivity {
                         actPerson = cursor.getString(1);
                         usedLines[finalId] = 1;
 
-                        if (textBOT.length() > 60) {
+                        if (textBOT.length() > 54) {
                             textBOT.setTextSize(16);
                             textTOP.setTextSize(16);
                         } else {
