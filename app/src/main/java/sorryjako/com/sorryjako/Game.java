@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
@@ -89,6 +90,8 @@ public class Game extends AppCompatActivity {
     Database database;
     Cursor cursor;
 
+    static MediaPlayer mp;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -118,6 +121,9 @@ public class Game extends AppCompatActivity {
         textBOT.setText("Sorry Jako");
         textTOP.setText("Sorry Jako");
         actPerson = "B";
+
+        mp = MediaPlayer.create(getApplicationContext(), R.raw.next_question);
+        mp.start();
 
         lastLine = 2;
         scoreTOP = 0;
