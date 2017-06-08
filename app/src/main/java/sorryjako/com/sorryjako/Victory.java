@@ -1,9 +1,13 @@
 package sorryjako.com.sorryjako;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -11,6 +15,8 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.Random;
 
 public class Victory extends AppCompatActivity {
 
@@ -69,20 +75,32 @@ public class Victory extends AppCompatActivity {
             }
         });
 
+        Random random = new Random();
+        int money = random.nextInt(46) + 5;
+
+
         if(winner.equals("B"))  {
-            winBOT.setText("Vyhrává MODRÝ");
-            winTOP.setText("Vyhrává MODRÝ");
-            elseBOT.setText("ZÍSKÁVÁŠ DOTACI VE VÝŠI 10 MILIONŮ");
-            elseTOP.setText("Bude líp");
-            tScoreBOT.setText(scoreBOT + "/" + scoreTOP);
-            tScoreTOP.setText(scoreTOP + "/" + scoreBOT);
+            Spannable spanOne = new SpannableString(scoreBOT + ":" + scoreTOP);
+            spanOne.setSpan(new ForegroundColorSpan(Color.parseColor("#EF0000")), 3, 4, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            Spannable spanTwo = new SpannableString(scoreTOP + ":" + scoreBOT);
+            spanTwo.setSpan(new ForegroundColorSpan(Color.parseColor("#EF0000")), 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            winBOT.setText("Vítězství");
+            winTOP.setText("Bude líp...");
+            elseBOT.setText("ZÍSKÁVÁŠ DOTACI VE VÝŠI " + money +" MILIONŮ");
+            elseTOP.setText(" ");
+            tScoreBOT.setText(spanOne);
+            tScoreTOP.setText(spanTwo);
         } else  {
-            winBOT.setText("Vyhrává ČERVENÝ");
-            winTOP.setText("Vyhrává ČERVENÝ");
-            elseBOT.setText("Bude líp");
-            elseTOP.setText("ZÍSKÁVÁŠ DOTACI VE VÝŠI 10 MILIONŮ");
-            tScoreBOT.setText(scoreBOT + "/" + scoreTOP);
-            tScoreTOP.setText(scoreTOP + "/" + scoreBOT);
+            Spannable spanThree = new SpannableString(scoreBOT + ":" + scoreTOP);
+            spanThree.setSpan(new ForegroundColorSpan(Color.parseColor("#EF0000")), 2, 4, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            Spannable spanFour = new SpannableString(scoreTOP + ":" + scoreBOT);
+            spanFour.setSpan(new ForegroundColorSpan(Color.parseColor("#EF0000")), 0, 2, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            winBOT.setText("Bude líp...");
+            winTOP.setText("Vítězství");
+            elseBOT.setText(" ");
+            elseTOP.setText("ZÍSKÁVÁŠ DOTACI VE VÝŠI " + money +" MILIONŮ");
+            tScoreBOT.setText(spanThree);
+            tScoreTOP.setText(spanFour);
         }
     }
 }

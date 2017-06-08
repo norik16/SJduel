@@ -25,7 +25,7 @@ public class Main extends AppCompatActivity {
         play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(getApplicationContext(), Game.class);
+                Intent i = new Intent(getApplicationContext(), CountDown.class);
                 startActivityForResult(i, 1);
             }
         });
@@ -35,11 +35,13 @@ public class Main extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(requestCode == 1) {
             if(resultCode == RESULT_OK) {
-                Intent ii =new Intent(getApplicationContext(), Victory.class);
-                ii.putExtra("winner", data.getStringExtra("winner"));
-                ii.putExtra("scoreTOP", data.getStringExtra("scoreTOP"));
-                ii.putExtra("scoreBOT", data.getStringExtra("scoreBOT"));
-                startActivityForResult(ii, 2);
+                if(data.getStringExtra("winner") != null) {
+                    Intent ii =new Intent(getApplicationContext(), Victory.class);
+                    ii.putExtra("winner", data.getStringExtra("winner"));
+                    ii.putExtra("scoreTOP", data.getStringExtra("scoreTOP"));
+                    ii.putExtra("scoreBOT", data.getStringExtra("scoreBOT"));
+                    startActivityForResult(ii, 2);
+                }
             }
         }
     }

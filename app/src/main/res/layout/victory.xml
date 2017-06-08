@@ -46,9 +46,10 @@
                 android:textColor="#27286D"
                 android:gravity="center"
                 android:text="x"
+                android:textStyle="bold"
                 android:rotation="180"
-                android:textSize="40dp"
-                android:paddingTop="10dp"
+                android:textSize="50dp"
+                android:layout_marginTop="10dp"
                 android:layout_height="match_parent" />
         </LinearLayout>
 
@@ -64,7 +65,8 @@
                 android:layout_gravity="bottom"
                 android:gravity="center"
                 android:rotation="180"
-                android:textSize="25dp"
+                android:textStyle="bold"
+                android:textSize="40dp"
                 android:textColor="#27286D"
                 android:text="XXXXAXXXXX"/>
         </LinearLayout>
@@ -75,19 +77,21 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:weightSum="2"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
+        android:weightSum="0"
+        android:layout_marginBottom="15dp"
+        android:layout_marginTop="20dp"
         android:layout_gravity="center"
         android:background="@mipmap/bg_blue"
         android:orientation="vertical">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_weight="1"
+            android:layout_marginBottom="5dp"
             android:layout_gravity="center"
             android:layout_height="match_parent">
 
             <ImageButton
+                android:layout_marginTop="20dp"
                 android:id="@+id/id_victory_restart_BT"
                 android:layout_width="wrap_content"
                 android:layout_gravity="bottom"
@@ -99,15 +103,16 @@
         </RelativeLayout>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:layout_height="match_parent">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="RESTART"
+                android:text="Hrát znovu"
                 android:gravity="center"
                 android:layout_gravity="center"
+                android:layout_marginBottom="15dp"
                 android:textColor="#FFFFFF"/>
         </LinearLayout>
     </LinearLayout>
@@ -130,7 +135,8 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="bottom"
                 android:gravity="center"
-                android:textSize="25dp"
+                android:textSize="40dp"
+                android:textStyle="bold"
                 android:textColor="#27286D"
                 android:paddingTop="10dp"
                 android:text="XXXXXXXXX"/>
@@ -147,7 +153,9 @@
                 android:textColor="#27286D"
                 android:gravity="center"
                 android:text="x"
-                android:textSize="40dp"
+                android:layout_marginBottom="10dp"
+                android:textStyle="bold"
+                android:textSize="50dp"
                 android:layout_height="match_parent" />
         </LinearLayout>
 
