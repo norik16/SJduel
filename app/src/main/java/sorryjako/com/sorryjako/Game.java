@@ -91,6 +91,8 @@ public class Game extends AppCompatActivity {
     Cursor cursor;
 
     static MediaPlayer mp;
+    static MediaPlayer mpZeman;
+    static MediaPlayer mpBabis;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,6 +127,9 @@ public class Game extends AppCompatActivity {
         mp = MediaPlayer.create(getApplicationContext(), R.raw.next_question);
         mp.start();
 
+        mpZeman = MediaPlayer.create(getApplicationContext(), R.raw.zeman);
+        mpBabis = MediaPlayer.create(getApplicationContext(), R.raw.babis);
+
         lastLine = 2;
         scoreTOP = 0;
         scoreBOT = 0;
@@ -142,9 +147,11 @@ public class Game extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Log.e("Game/onClick", "clicked...");
-                if (actPerson.equals("B"))
+                if (actPerson.equals("B")) {
                     addScore("TOP");
-                else {
+
+                } else {
+                    mpBabis.start();
                     addScore("BOT");
                 }
                 getLine("babisTOP");
@@ -155,10 +162,14 @@ public class Game extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Log.e("Game/onClick", "clicked...");
-                if (actPerson.equals("B"))
+                if (actPerson.equals("B"))  {
                     addScore("BOT");
-                else
+                }
+                else{
+                    mpBabis.start();
                     addScore("TOP");
+                }
+
                 getLine("babisBOT");
             }
         });
@@ -166,10 +177,12 @@ public class Game extends AppCompatActivity {
         zemanTOP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (actPerson.equals("B"))
+                if (actPerson.equals("B")) {
                     addScore("BOT");
-                else
+                    mpZeman.start();
+                } else{
                     addScore("TOP");
+                }
                 getLine("zemanTOP");
             }
         });
@@ -177,8 +190,10 @@ public class Game extends AppCompatActivity {
         zemanBOT.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (actPerson.equals("B"))
+                if (actPerson.equals("B")) {
                     addScore("TOP");
+                    mpZeman.start();
+                }
                 else
                     addScore("BOT");
                 getLine("zemanBOT");
@@ -260,6 +275,7 @@ public class Game extends AppCompatActivity {
                                     break;
                             }
                         Log.e("Game/clock", "ticked");
+                        mp.start();
                     }
 
                     @Override
