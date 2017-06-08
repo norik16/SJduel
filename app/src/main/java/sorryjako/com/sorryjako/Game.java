@@ -127,8 +127,6 @@ public class Game extends AppCompatActivity {
         mp = MediaPlayer.create(getApplicationContext(), R.raw.next_question);
         mp.start();
 
-        mpZeman = MediaPlayer.create(getApplicationContext(), R.raw.zeman);
-        mpBabis = MediaPlayer.create(getApplicationContext(), R.raw.babis);
 
         lastLine = 2;
         scoreTOP = 0;
@@ -142,6 +140,9 @@ public class Game extends AppCompatActivity {
 
         database = new Database(getApplicationContext());
         sqLiteDatabase = database.getReadableDatabase();
+
+        mpZeman = MediaPlayer.create(getApplicationContext(), R.raw.zeman);
+        mpBabis = MediaPlayer.create(getApplicationContext(), R.raw.babis);
 
         babisTOP.setOnClickListener(new View.OnClickListener() {
             @Override
