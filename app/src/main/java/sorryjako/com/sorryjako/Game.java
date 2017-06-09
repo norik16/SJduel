@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.CountDownTimer;
+import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -155,6 +156,8 @@ public class Game extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.game);
 
+
+        Settings.System.putInt( getApplicationContext().getContentResolver(), Settings.System.ACCELEROMETER_ROTATION, false ? 1 : 0);
 
         babisTOP = (ImageButton) findViewById(R.id.id_game_babisTOP_BT);
         babisBOT = (ImageButton) findViewById(R.id.id_game_babisBOT_BT);

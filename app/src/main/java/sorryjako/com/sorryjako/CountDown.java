@@ -2,9 +2,11 @@ package sorryjako.com.sorryjako;
 
 import android.animation.Animator;
 import android.animation.AnimatorSet;
+import android.content.Context;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Build;
+import android.provider.Settings;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -37,6 +39,8 @@ public class CountDown extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.count_down);
+
+        Settings.System.putInt( getApplicationContext().getContentResolver(), Settings.System.ACCELEROMETER_ROTATION, false ? 1 : 0);
 
         mp = MediaPlayer.create(getApplicationContext(), R.raw.next_question);
 
