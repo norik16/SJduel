@@ -145,6 +145,12 @@ public class Game extends AppCompatActivity {
     Database database;
     Cursor cursor;
 
+    //win: TOP - 1, BOT - 0
+    int truefalse = 0;
+
+    LinearLayout blueBar;
+    LinearLayout redBar;
+
     static MediaPlayer mp;
     static MediaPlayer mpZeman;
     static MediaPlayer mpBabis;
@@ -172,6 +178,9 @@ public class Game extends AppCompatActivity {
         tScoreHisBOT = (TextView) findViewById(R.id.id_game_hisScoreBOT_TV);
         tScoreHisTOP = (TextView) findViewById(R.id.id_game_hisScoreTOP_TV);
 
+        redBar = (LinearLayout) findViewById(R.id.id_game_redBar_LL);
+        blueBar = (LinearLayout) findViewById(R.id.id_game_blueBar_LL);
+
         mp = MediaPlayer.create(getApplicationContext(), R.raw.next_question);
         mp.start();
 
@@ -183,7 +192,6 @@ public class Game extends AppCompatActivity {
         textBOT.setText("Sorry Jako");
         textTOP.setText("Sorry Jako");
         actPerson = "B";
-
 
 
         lastLine = 2;
@@ -206,12 +214,14 @@ public class Game extends AppCompatActivity {
                 Log.e("Game/onClick", "clicked...");
                 if (actPerson.equals("B")) {
                     addScore("TOP");
+                    truefalse = 1;
                     mp = MediaPlayer.create(getApplicationContext(), R.raw.next_question);
                     mp.start();
 
                 } else {
                     mpBabis = MediaPlayer.create(getApplicationContext(), R.raw.babis);
                     mpBabis.start();
+                    truefalse = 0;
                     addScore("BOT");
                 }
                 aPerson = babisTOP;
@@ -226,12 +236,14 @@ public class Game extends AppCompatActivity {
                 Log.e("Game/onClick", "clicked...");
                 if (actPerson.equals("B"))  {
                     addScore("BOT");
+                    truefalse = 0;
                     mp = MediaPlayer.create(getApplicationContext(), R.raw.next_question);
                     mp.start();
                 }
                 else{
                     mpBabis = MediaPlayer.create(getApplicationContext(), R.raw.babis);
                     mpBabis.start();
+                    truefalse = 1;
                     addScore("TOP");
                 }
                 aPerson = babisBOT;
@@ -245,10 +257,12 @@ public class Game extends AppCompatActivity {
             public void onClick(View view) {
                 if (actPerson.equals("B")) {
                     addScore("BOT");
+                    truefalse = 0;
                     mpZeman = MediaPlayer.create(getApplicationContext(), R.raw.zeman);
                     mpZeman.start();
                 } else{
                     addScore("TOP");
+                    truefalse = 1;
                     mp = MediaPlayer.create(getApplicationContext(), R.raw.next_question);
                     mp.start();
                 }
@@ -263,11 +277,13 @@ public class Game extends AppCompatActivity {
             public void onClick(View view) {
                 if (actPerson.equals("B")) {
                     addScore("TOP");
+                    truefalse = 1;
                     mpZeman = MediaPlayer.create(getApplicationContext(), R.raw.zeman);
                     mpZeman.start();
                 }
                 else{
                     addScore("BOT");
+                    truefalse = 0;
                     mp = MediaPlayer.create(getApplicationContext(), R.raw.next_question);
                     mp.start();
                 }
@@ -329,15 +345,52 @@ public class Game extends AppCompatActivity {
                         if (millisUntilFinished / (globalDelay/3) % 2 == 0)
                             switch (person) {
                                 case "babisTOP":
+                                    textTOP.setText(" ");
+                                    textBOT.setText(" ");
+                                    if(truefalse == 0) {
+                                        redBar.setBackgroundResource(R.mipmap.red_fault);
+                                        blueBar.setBackgroundResource(R.mipmap.blue_true);
+                                    } else {
+                                        redBar.setBackgroundResource(R.mipmap.red_true);
+                                        blueBar.setBackgroundResource(R.mipmap.blue_fault);
+                                    }
                                     babisTOP.setImageResource(R.mipmap.babis_open);
                                     break;
                                 case "babisBOT":
+                                    textTOP.setText(" ");
+                                    textBOT.setText(" ");
+                                    if(truefalse == 0) {
+                                        blueBar.setBackgroundResource(R.mipmap.blue_true);
+                                        redBar.setBackgroundResource(R.mipmap.red_fault);
+                                    } else {
+                                        blueBar.setBackgroundResource(R.mipmap.blue_fault);
+                                        redBar.setBackgroundResource(R.mipmap.red_true);
+                                    }
                                     babisBOT.setImageResource(R.mipmap.babis_open);
                                     break;
                                 case "zemanTOP":
+                                    textTOP.setText(" ");
+                                    textBOT.setText(" ");
+                                    if(truefalse == 0) {
+                                        blueBar.setBackgroundResource(R.mipmap.blue_true);
+                                        redBar.setBackgroundResource(R.mipmap.red_fault);
+                                    } else {
+                                        blueBar.setBackgroundResource(R.mipmap.blue_fault);
+                                        redBar.setBackgroundResource(R.mipmap.red_true);
+                                    }
                                     zemanTOP.setImageResource(R.mipmap.zeman_open);
+                                    redBar.setBackgroundResource(R.mipmap.red_true);
                                     break;
                                 case "zemanBOT":
+                                    textTOP.setText(" ");
+                                    textBOT.setText(" ");
+                                    if(truefalse == 0) {
+                                        blueBar.setBackgroundResource(R.mipmap.blue_true);
+                                        redBar.setBackgroundResource(R.mipmap.red_fault);
+                                    } else {
+                                        blueBar.setBackgroundResource(R.mipmap.blue_fault);
+                                        redBar.setBackgroundResource(R.mipmap.red_true);
+                                    }
                                     zemanBOT.setImageResource(R.mipmap.zeman_open);
                                     break;
                             }
@@ -345,15 +398,23 @@ public class Game extends AppCompatActivity {
                             switch (person) {
                                 case "babisTOP":
                                     babisTOP.setImageResource(R.mipmap.babis_close);
+                                    redBar.setBackgroundResource(R.mipmap.bg_red);
+                                    blueBar.setBackgroundResource(R.mipmap.bg_blue);
                                     break;
                                 case "babisBOT":
                                     babisBOT.setImageResource(R.mipmap.babis_close);
+                                    blueBar.setBackgroundResource(R.mipmap.bg_blue);
+                                    redBar.setBackgroundResource(R.mipmap.bg_red);
                                     break;
                                 case "zemanTOP":
                                     zemanTOP.setImageResource(R.mipmap.zeman_close);
+                                    redBar.setBackgroundResource(R.mipmap.bg_red);
+                                    blueBar.setBackgroundResource(R.mipmap.bg_blue);
                                     break;
                                 case "zemanBOT":
                                     zemanBOT.setImageResource(R.mipmap.zeman_close);
+                                    blueBar.setBackgroundResource(R.mipmap.bg_blue);
+                                    redBar.setBackgroundResource(R.mipmap.bg_red);
                                     break;
                             }
                         Log.e("Game/clock", "ticked");

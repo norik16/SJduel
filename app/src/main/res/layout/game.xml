@@ -54,6 +54,7 @@
             android:layout_height="match_parent"
             android:layout_marginTop="-5dp"
             android:layout_weight="1"
+            android:id="@+id/id_game_redBar_LL"
             android:background="@mipmap/bg_red"
             android:gravity="center">
 
@@ -124,6 +125,7 @@
             android:layout_height="match_parent"
             android:layout_marginBottom="-5dp"
             android:layout_weight="1"
+            android:id="@+id/id_game_blueBar_LL"
             android:background="@mipmap/bg_blue"
             android:gravity="center">
 
