@@ -88,5 +88,12 @@ public class Main extends AppCompatActivity {
                 }
             }
         }
+        if(requestCode == 2) {
+            if(resultCode == RESULT_OK) {
+                    Intent iii = new Intent(getApplicationContext(), CountDown.class);
+                    startActivityForResult(iii, 1);
+
+            }
+        }
     }
 }

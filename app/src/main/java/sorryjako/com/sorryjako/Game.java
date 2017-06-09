@@ -168,6 +168,9 @@ public class Game extends AppCompatActivity {
         tScoreHisBOT = (TextView) findViewById(R.id.id_game_hisScoreBOT_TV);
         tScoreHisTOP = (TextView) findViewById(R.id.id_game_hisScoreTOP_TV);
 
+        mp = MediaPlayer.create(getApplicationContext(), R.raw.next_question);
+        mp.start();
+
         //Setting text
         tScoreBOT.setText("0");
         tScoreTOP.setText("0");
@@ -177,8 +180,6 @@ public class Game extends AppCompatActivity {
         textTOP.setText("Sorry Jako");
         actPerson = "B";
 
-        mp = MediaPlayer.create(getApplicationContext(), R.raw.next_question);
-        mp.start();
 
 
         lastLine = 2;
@@ -194,8 +195,6 @@ public class Game extends AppCompatActivity {
         database = new Database(getApplicationContext());
         sqLiteDatabase = database.getReadableDatabase();
 
-        mpZeman = MediaPlayer.create(getApplicationContext(), R.raw.zeman);
-        mpBabis = MediaPlayer.create(getApplicationContext(), R.raw.babis);
 
         babisTOP.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -205,6 +204,7 @@ public class Game extends AppCompatActivity {
                     addScore("TOP");
 
                 } else {
+                    mpBabis = MediaPlayer.create(getApplicationContext(), R.raw.babis);
                     mpBabis.start();
                     addScore("BOT");
                 }
@@ -222,6 +222,7 @@ public class Game extends AppCompatActivity {
                     addScore("BOT");
                 }
                 else{
+                    mpBabis = MediaPlayer.create(getApplicationContext(), R.raw.babis);
                     mpBabis.start();
                     addScore("TOP");
                 }
@@ -236,6 +237,7 @@ public class Game extends AppCompatActivity {
             public void onClick(View view) {
                 if (actPerson.equals("B")) {
                     addScore("BOT");
+                    mpZeman = MediaPlayer.create(getApplicationContext(), R.raw.zeman);
                     mpZeman.start();
                 } else{
                     addScore("TOP");
@@ -251,6 +253,7 @@ public class Game extends AppCompatActivity {
             public void onClick(View view) {
                 if (actPerson.equals("B")) {
                     addScore("TOP");
+                    mpZeman = MediaPlayer.create(getApplicationContext(), R.raw.zeman);
                     mpZeman.start();
                 }
                 else
