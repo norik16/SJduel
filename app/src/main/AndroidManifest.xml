@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="sorryjako.com.sorryjako">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+
+
     <application
         android:screenOrientation="portrait"
         android:allowBackup="true"
@@ -23,5 +27,4 @@
         <activity android:name=".Victory" />
         <activity android:name=".CountDown"></activity>
     </application>
-    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
 </manifest>
