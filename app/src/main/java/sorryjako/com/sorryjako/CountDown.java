@@ -21,7 +21,7 @@ import javax.xml.datatype.Duration;
 
 public class CountDown extends AppCompatActivity {
 
-    static final int countFrom = 4;
+    static final int countFrom = 3;
     static final int popDuration = 250;
 
     int lastChange = countFrom;
@@ -67,7 +67,7 @@ public class CountDown extends AppCompatActivity {
             @Override
             public void onTick(long millisUntilFinished) {
                 if (millisUntilFinished / 1000 <= lastChange) {
-                    count.setText(Long.toString(lastChange));
+                    count.setText(Long.toString(lastChange + 1));
                     popUp.run();
                     lastChange--;
                 }
