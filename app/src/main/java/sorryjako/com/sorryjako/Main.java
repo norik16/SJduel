@@ -1,6 +1,7 @@
 package sorryjako.com.sorryjako;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.os.Build;
 import android.provider.Settings;
@@ -31,7 +32,7 @@ public class Main extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.main);
 
-        Settings.System.putInt( getApplicationContext().getContentResolver(), Settings.System.ACCELEROMETER_ROTATION, false ? 1 : 0);
+        setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         play = (ImageButton) findViewById(R.id.id_main_play_BT);
 

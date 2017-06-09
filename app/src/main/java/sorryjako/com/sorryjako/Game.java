@@ -1,6 +1,7 @@
 package sorryjako.com.sorryjako;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
@@ -157,7 +158,7 @@ public class Game extends AppCompatActivity {
         setContentView(R.layout.game);
 
 
-        Settings.System.putInt( getApplicationContext().getContentResolver(), Settings.System.ACCELEROMETER_ROTATION, false ? 1 : 0);
+        setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         babisTOP = (ImageButton) findViewById(R.id.id_game_babisTOP_BT);
         babisBOT = (ImageButton) findViewById(R.id.id_game_babisBOT_BT);

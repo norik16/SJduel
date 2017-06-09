@@ -1,6 +1,7 @@
 package sorryjako.com.sorryjako;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Build;
@@ -52,6 +53,8 @@ public class Victory extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.victory);
+
+        setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         mp = MediaPlayer.create(getApplicationContext(),R.raw.finish);
         mp.start();

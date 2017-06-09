@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.media.MediaPlayer;
 import android.os.Build;
 import android.provider.Settings;
@@ -40,7 +41,7 @@ public class CountDown extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.count_down);
 
-        Settings.System.putInt( getApplicationContext().getContentResolver(), Settings.System.ACCELEROMETER_ROTATION, false ? 1 : 0);
+        setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         mp = MediaPlayer.create(getApplicationContext(), R.raw.next_question);
 
