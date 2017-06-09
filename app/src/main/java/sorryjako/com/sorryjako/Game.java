@@ -19,6 +19,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -31,7 +32,7 @@ import java.util.concurrent.TimeUnit;
 
 public class Game extends AppCompatActivity {
     static final int numberOfLines = 100;
-    static final int globalDelay = 250;
+    static final int globalDelay = 1000;
     static final int facesFloatingPeriod = 1200;
     static final float facesFloatingFactor = 0.06f;
     ImageButton babisTOP;
@@ -135,6 +136,9 @@ public class Game extends AppCompatActivity {
     TextView tScoreBOT;
     TextView tScoreHisTOP;
     TextView tScoreHisBOT;
+
+    ImageView resultTOP;
+    ImageView resultBOT;
     LinearLayout linearLayout;
     int scoreTOP;
     int scoreBOT;
@@ -181,6 +185,9 @@ public class Game extends AppCompatActivity {
         redBar = (LinearLayout) findViewById(R.id.id_game_redBar_LL);
         blueBar = (LinearLayout) findViewById(R.id.id_game_blueBar_LL);
 
+        resultBOT = (ImageView) findViewById(R.id.id_game_resultBOT_IV);
+        resultTOP = (ImageView) findViewById(R.id.id_game_resultTOP_IV);
+
         mp = MediaPlayer.create(getApplicationContext(), R.raw.next_question);
         mp.start();
 
@@ -217,12 +224,15 @@ public class Game extends AppCompatActivity {
                     truefalse = 1;
                     mp = MediaPlayer.create(getApplicationContext(), R.raw.next_question);
                     mp.start();
-
+                    resultTOP.setImageResource(R.mipmap.red_true);
+                    resultBOT.setImageResource(R.mipmap.blue_fault);
                 } else {
                     mpBabis = MediaPlayer.create(getApplicationContext(), R.raw.babis);
                     mpBabis.start();
                     truefalse = 0;
                     addScore("BOT");
+                    resultTOP.setImageResource(R.mipmap.red_fault);
+                    resultBOT.setImageResource(R.mipmap.blue_true);
                 }
                 aPerson = babisTOP;
                 sBigBoing.run();
@@ -239,12 +249,16 @@ public class Game extends AppCompatActivity {
                     truefalse = 0;
                     mp = MediaPlayer.create(getApplicationContext(), R.raw.next_question);
                     mp.start();
+                    resultTOP.setImageResource(R.mipmap.red_fault);
+                    resultBOT.setImageResource(R.mipmap.blue_true);
                 }
                 else{
                     mpBabis = MediaPlayer.create(getApplicationContext(), R.raw.babis);
                     mpBabis.start();
                     truefalse = 1;
                     addScore("TOP");
+                    resultTOP.setImageResource(R.mipmap.red_true);
+                    resultBOT.setImageResource(R.mipmap.blue_fault);
                 }
                 aPerson = babisBOT;
                 sBigBoing.run();
@@ -260,11 +274,15 @@ public class Game extends AppCompatActivity {
                     truefalse = 0;
                     mpZeman = MediaPlayer.create(getApplicationContext(), R.raw.zeman);
                     mpZeman.start();
+                    resultTOP.setImageResource(R.mipmap.red_fault);
+                    resultBOT.setImageResource(R.mipmap.blue_true);
                 } else{
                     addScore("TOP");
                     truefalse = 1;
                     mp = MediaPlayer.create(getApplicationContext(), R.raw.next_question);
                     mp.start();
+                    resultTOP.setImageResource(R.mipmap.red_true);
+                    resultBOT.setImageResource(R.mipmap.blue_fault);
                 }
                 aPerson = zemanTOP;
                 sBigBoing.run();
@@ -280,12 +298,16 @@ public class Game extends AppCompatActivity {
                     truefalse = 1;
                     mpZeman = MediaPlayer.create(getApplicationContext(), R.raw.zeman);
                     mpZeman.start();
+                    resultTOP.setImageResource(R.mipmap.red_true);
+                    resultBOT.setImageResource(R.mipmap.blue_fault);
                 }
                 else{
                     addScore("BOT");
                     truefalse = 0;
                     mp = MediaPlayer.create(getApplicationContext(), R.raw.next_question);
                     mp.start();
+                    resultTOP.setImageResource(R.mipmap.red_fault);
+                    resultBOT.setImageResource(R.mipmap.blue_true);
                 }
 
                 aPerson = zemanBOT;
@@ -337,6 +359,10 @@ public class Game extends AppCompatActivity {
                 babisBOT.setEnabled(false);
                 babisTOP.setEnabled(false);
 
+                resultBOT.setVisibility(View.VISIBLE);
+                resultTOP.setVisibility(View.VISIBLE);
+
+
                 final Integer finalId = id;
                 new CountDownTimer(globalDelay, globalDelay/3) {
 
@@ -345,52 +371,52 @@ public class Game extends AppCompatActivity {
                         if (millisUntilFinished / (globalDelay/3) % 2 == 0)
                             switch (person) {
                                 case "babisTOP":
-                                    textTOP.setText(" ");
-                                    textBOT.setText(" ");
-                                    if(truefalse == 0) {
-                                        redBar.setBackgroundResource(R.mipmap.red_fault);
-                                        blueBar.setBackgroundResource(R.mipmap.blue_true);
-                                    } else {
-                                        redBar.setBackgroundResource(R.mipmap.red_true);
-                                        blueBar.setBackgroundResource(R.mipmap.blue_fault);
-                                    }
+//                                    textTOP.setText(" ");
+//                                    textBOT.setText(" ");
+//                                    if(truefalse == 0) {
+//                                        redBar.setBackgroundResource(R.mipmap.red_fault);
+//                                        blueBar.setBackgroundResource(R.mipmap.blue_true);
+//                                    } else {
+//                                        redBar.setBackgroundResource(R.mipmap.red_true);
+//                                        blueBar.setBackgroundResource(R.mipmap.blue_fault);
+//                                    }
                                     babisTOP.setImageResource(R.mipmap.babis_open);
                                     break;
                                 case "babisBOT":
-                                    textTOP.setText(" ");
-                                    textBOT.setText(" ");
-                                    if(truefalse == 0) {
-                                        blueBar.setBackgroundResource(R.mipmap.blue_true);
-                                        redBar.setBackgroundResource(R.mipmap.red_fault);
-                                    } else {
-                                        blueBar.setBackgroundResource(R.mipmap.blue_fault);
-                                        redBar.setBackgroundResource(R.mipmap.red_true);
-                                    }
+//                                    textTOP.setText(" ");
+//                                    textBOT.setText(" ");
+//                                    if(truefalse == 0) {
+//                                        blueBar.setBackgroundResource(R.mipmap.blue_true);
+//                                        redBar.setBackgroundResource(R.mipmap.red_fault);
+//                                    } else {
+//                                        blueBar.setBackgroundResource(R.mipmap.blue_fault);
+//                                        redBar.setBackgroundResource(R.mipmap.red_true);
+//                                    }
                                     babisBOT.setImageResource(R.mipmap.babis_open);
                                     break;
                                 case "zemanTOP":
-                                    textTOP.setText(" ");
-                                    textBOT.setText(" ");
-                                    if(truefalse == 0) {
-                                        blueBar.setBackgroundResource(R.mipmap.blue_true);
-                                        redBar.setBackgroundResource(R.mipmap.red_fault);
-                                    } else {
-                                        blueBar.setBackgroundResource(R.mipmap.blue_fault);
-                                        redBar.setBackgroundResource(R.mipmap.red_true);
-                                    }
+//                                    textTOP.setText(" ");
+//                                    textBOT.setText(" ");
+//                                    if(truefalse == 0) {
+//                                        blueBar.setBackgroundResource(R.mipmap.blue_true);
+//                                        redBar.setBackgroundResource(R.mipmap.red_fault);
+//                                    } else {
+//                                        blueBar.setBackgroundResource(R.mipmap.blue_fault);
+//                                        redBar.setBackgroundResource(R.mipmap.red_true);
+//                                    }
                                     zemanTOP.setImageResource(R.mipmap.zeman_open);
-                                    redBar.setBackgroundResource(R.mipmap.red_true);
+//                                    redBar.setBackgroundResource(R.mipmap.red_true);
                                     break;
                                 case "zemanBOT":
-                                    textTOP.setText(" ");
-                                    textBOT.setText(" ");
-                                    if(truefalse == 0) {
-                                        blueBar.setBackgroundResource(R.mipmap.blue_true);
-                                        redBar.setBackgroundResource(R.mipmap.red_fault);
-                                    } else {
-                                        blueBar.setBackgroundResource(R.mipmap.blue_fault);
-                                        redBar.setBackgroundResource(R.mipmap.red_true);
-                                    }
+//                                    textTOP.setText(" ");
+//                                    textBOT.setText(" ");
+//                                    if(truefalse == 0) {
+//                                        blueBar.setBackgroundResource(R.mipmap.blue_true);
+//                                        redBar.setBackgroundResource(R.mipmap.red_fault);
+//                                    } else {
+//                                        blueBar.setBackgroundResource(R.mipmap.blue_fault);
+//                                        redBar.setBackgroundResource(R.mipmap.red_true);
+//                                    }
                                     zemanBOT.setImageResource(R.mipmap.zeman_open);
                                     break;
                             }
@@ -433,6 +459,9 @@ public class Game extends AppCompatActivity {
                         zemanTOP.setEnabled(true);
                         babisBOT.setEnabled(true);
                         babisTOP.setEnabled(true);
+
+                        resultBOT.setVisibility(View.INVISIBLE);
+                        resultTOP.setVisibility(View.INVISIBLE);
 
                         lastLine = cursor.getInt(2);
                         textTOP.setText(cursor.getString(0));

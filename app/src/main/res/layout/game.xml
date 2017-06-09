@@ -80,28 +80,38 @@
             android:layout_weight="1"
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
+            android:weightSum="3"
             android:paddingTop="16dp">
-
+3
             <TextView
                 android:id="@+id/id_game_scoreTOP_TV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:ems="10"
+                android:layout_gravity="start"
+                android:textAlignment="textStart"
                 android:text="Sorry jako"
                 android:textColor="#EF0000"
                 android:textSize="20dp"
+                android:textStyle="bold"
+                android:layout_weight="1"/>
 
-                android:textStyle="bold" />
+            <ImageView
+                android:id="@+id/id_game_resultTOP_IV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                app:srcCompat="@mipmap/red_true"
+                android:layout_weight="1"/>
 
             <TextView
                 android:id="@+id/id_game_hisScoreTOP_TV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
-                android:layout_weight="1"
                 android:textAlignment="textEnd"
                 android:textColor="#27286D"
                 android:textSize="20dp"
+                android:layout_weight="1"
                 android:textStyle="bold" />
 
 
@@ -151,6 +161,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:weightSum="3"
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
             android:paddingTop="16dp">
@@ -160,19 +171,29 @@
                 android:id="@+id/id_game_scoreBOT_TV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:ems="10"
+                android:layout_gravity="start"
+                android:textAlignment="textStart"
                 android:textColor="#27286D"
                 android:textSize="20dp"
+                android:layout_weight="1"
                 android:textStyle="bold"/>
+
+            <ImageView
+                android:id="@+id/id_game_resultBOT_IV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="1"
+                app:srcCompat="@mipmap/blue_true" />
 
             <TextView
                 android:id="@+id/id_game_hisScoreBOT_TV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
-                android:layout_weight="1"
                 android:textAlignment="textEnd"
                 android:textColor="#EF0000"
+                android:layout_weight="1"
                 android:textSize="20dp"
                 android:textStyle="bold"/>
 
