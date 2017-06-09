@@ -8,7 +8,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="#FFF"
-    android:weightSum="3">
+    android:weightSum="0">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="10dp"
+        android:layout_weight="1">
 
         <ImageView
             android:id="@+id/id_main_pic_IV"
@@ -17,21 +23,34 @@
             android:layout_margin="5dp"
             android:paddingLeft="16dp"
             android:paddingTop="42dp"
-            app:srcCompat="@mipmap/homescreen"
-            android:layout_weight="1"/>
+            app:srcCompat="@mipmap/homescreen" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="-20dp"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="30dp"
+        android:layout_weight="2">
 
         <ImageButton
-            android:id="@+id/id_main_play_BT"
-            android:text="hraj"
-            android:layout_marginBottom="140dp"
-            android:layout_marginLeft="60dp"
-            android:layout_marginRight="60dp"
-            android:gravity="top"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#FFF"
-            app:srcCompat="@mipmap/play"
-            android:layout_weight="2" />
+                android:id="@+id/id_main_play_BT"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#FFF"
+                android:gravity="top"
+                android:text="hraj"
+                app:srcCompat="@mipmap/play" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="-20dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="2"
+        android:background="@mipmap/prague_bg">
 
     </LinearLayout>
+
+</LinearLayout>
 

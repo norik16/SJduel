@@ -97,7 +97,7 @@
                 android:layout_gravity="bottom"
                 android:layout_height="wrap_content"
                 android:background="#27286D"
-                app:srcCompat="@mipmap/play"
+                app:srcCompat="@mipmap/replay"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true" />
         </RelativeLayout>
