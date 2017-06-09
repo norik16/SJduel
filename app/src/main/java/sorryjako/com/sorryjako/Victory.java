@@ -3,12 +3,15 @@ package sorryjako.com.sorryjako;
 import android.content.Intent;
 import android.graphics.Color;
 import android.media.MediaPlayer;
+import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewPropertyAnimator;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -16,9 +19,13 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.github.jinatonic.confetti.CommonConfetti;
+
 import java.util.Random;
 
 public class Victory extends AppCompatActivity {
+    static final int floatingPeriod = 1000;
+    static final float floatingFactor = 0.1f;
 
     static MediaPlayer mp;
     ImageButton restart;
@@ -34,6 +41,9 @@ public class Victory extends AppCompatActivity {
     TextView tScoreTOP;
     TextView elseTOP;
     TextView winTOP;
+
+    ViewGroup backTOP;
+    ViewGroup backBOT;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +76,9 @@ public class Victory extends AppCompatActivity {
         elseTOP = (TextView) findViewById(R.id.id_victory_elseTOP_TV);
         winTOP = (TextView) findViewById(R.id.id_victory_winTOP_TV);
 
+        backTOP = (ViewGroup) findViewById(R.id.id_victory_layoutTOP);
+        backBOT = (ViewGroup) findViewById(R.id.id_victory_layoutBOT);
+
         restart = (ImageButton) findViewById(R.id.id_victory_restart_BT);
         restart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,6 +103,8 @@ public class Victory extends AppCompatActivity {
             elseTOP.setText(" ");
             tScoreBOT.setText(spanOne);
             tScoreTOP.setText(spanTwo);
+
+//            CommonConfetti.explosion(backBOT, 0, 0, new int[] { Color.BLUE, Color.CYAN, Color.GREEN, Color.RED, Color.YELLOW }).oneShot().setAccelerationX(10f);
         } else  {
             Spannable spanThree = new SpannableString(scoreBOT + ":" + scoreTOP);
             spanThree.setSpan(new ForegroundColorSpan(Color.parseColor("#EF0000")), 2, 4, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
@@ -102,5 +117,43 @@ public class Victory extends AppCompatActivity {
             tScoreBOT.setText(spanThree);
             tScoreTOP.setText(spanFour);
         }
+        biggerFaces.run();
     }
+
+    @Override
+    public void onBackPressed() {
+    }
+
+    final Runnable biggerFaces = new Runnable() {
+        @Override
+        public void run() {
+            makeBigger(restart.animate());
+        }
+
+        private void makeBigger(ViewPropertyAnimator a) {
+            a.scaleXBy(floatingFactor);
+            a.scaleYBy(floatingFactor);
+            a.setDuration(floatingPeriod);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                a.withEndAction(smallerFaces);
+            }
+            a.start();
+        }
+    };
+    final Runnable smallerFaces = new Runnable() {
+        @Override
+        public void run() {
+            makeBigger(restart.animate());
+        }
+
+        private void makeBigger(ViewPropertyAnimator a) {
+            a.scaleXBy(-floatingFactor);
+            a.scaleYBy(-floatingFactor);
+            a.setDuration(floatingPeriod);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                a.withEndAction(biggerFaces);
+            }
+            a.start();
+        }
+    };
 }

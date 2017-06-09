@@ -1,15 +1,20 @@
 package sorryjako.com.sorryjako;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.ViewPropertyAnimator;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
+
+import com.github.jinatonic.confetti.CommonConfetti;
+import com.github.jinatonic.confetti.ConfettiManager;
 
 public class Main extends AppCompatActivity {
     static final int floatingPeriod = 1000;
@@ -26,6 +31,7 @@ public class Main extends AppCompatActivity {
         setContentView(R.layout.main);
 
         play = (ImageButton) findViewById(R.id.id_main_play_BT);
+
         play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

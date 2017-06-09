@@ -36,18 +36,20 @@ public class Game extends AppCompatActivity {
     ImageButton babisBOT;
     ImageButton zemanTOP;
     ImageButton zemanBOT;
+    
+    ImageButton aPerson;
     final Runnable biggerFaces = new Runnable() {
         @Override
         public void run() {
-            makeBigger(babisTOP.animate());
-            makeBigger(babisBOT.animate());
-            makeBigger(zemanTOP.animate());
-            makeBigger(zemanBOT.animate());
+            makeSmaller(babisTOP.animate());
+            makeSmaller(babisBOT.animate());
+            makeSmaller(zemanTOP.animate());
+            makeSmaller(zemanBOT.animate());
         }
 
-        private void makeBigger(ViewPropertyAnimator a) {
-            a.scaleXBy(facesFloatingFactor);
-            a.scaleYBy(facesFloatingFactor);
+        private void makeSmaller(ViewPropertyAnimator a) {
+            a.scaleX(1+facesFloatingFactor);
+            a.scaleY(1+facesFloatingFactor);
             a.setDuration(facesFloatingPeriod);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                 a.withEndAction(smallerFaces);
@@ -65,8 +67,8 @@ public class Game extends AppCompatActivity {
         }
 
         private void makeBigger(ViewPropertyAnimator a) {
-            a.scaleXBy(-facesFloatingFactor);
-            a.scaleYBy(-facesFloatingFactor);
+            a.scaleX(1-facesFloatingFactor);
+            a.scaleY(1-facesFloatingFactor);
             a.setDuration(facesFloatingPeriod);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                 a.withEndAction(biggerFaces);
@@ -74,6 +76,56 @@ public class Game extends AppCompatActivity {
             a.start();
         }
     };
+
+    final Runnable sBigBoing = new Runnable() {
+        @Override
+        public void run() {
+            makeSmaller(aPerson.animate());
+        }
+
+        private void makeSmaller(ViewPropertyAnimator a) {
+            a.scaleX(1+facesFloatingFactor*2.1f);
+            a.scaleY(1+facesFloatingFactor*2.1f);
+            a.setDuration(facesFloatingPeriod/10);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                a.withEndAction(sSmallBoing);
+            }
+            a.start();
+        }
+    };
+    final Runnable sSmallBoing = new Runnable() {
+        @Override
+        public void run() {
+            makeBigger(aPerson.animate());
+        }
+
+        private void makeBigger(ViewPropertyAnimator a) {
+            a.scaleX(1);
+            a.scaleY(1);
+            a.setDuration(facesFloatingPeriod/10);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                a.withEndAction(biggerFaces);
+            }
+            a.start();
+        }
+    };
+//    final Runnable sEndBoing = new Runnable() {
+//        @Override
+//        public void run() {
+//            aPerson.animate().scaleX()
+//            makeBigger(aPerson.animate());
+//        }
+//
+//        private void makeBigger(ViewPropertyAnimator a) {
+//            a.scaleXBy(-facesFloatingFactor*3);
+//            a.scaleYBy(-facesFloatingFactor*3);
+//            a.setDuration(facesFloatingPeriod/10);
+//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+////                a.withEndAction(biggerFaces);
+//            }
+//            a.start();
+//        }
+//    };
 
     AutoResizeTextView textTOP;
     AutoResizeTextView textBOT;
@@ -156,6 +208,8 @@ public class Game extends AppCompatActivity {
                     mpBabis.start();
                     addScore("BOT");
                 }
+                aPerson = babisTOP;
+                sBigBoing.run();
                 getLine("babisTOP");
             }
         });
@@ -171,7 +225,8 @@ public class Game extends AppCompatActivity {
                     mpBabis.start();
                     addScore("TOP");
                 }
-
+                aPerson = babisBOT;
+                sBigBoing.run();
                 getLine("babisBOT");
             }
         });
@@ -185,6 +240,8 @@ public class Game extends AppCompatActivity {
                 } else{
                     addScore("TOP");
                 }
+                aPerson = zemanTOP;
+                sBigBoing.run();
                 getLine("zemanTOP");
             }
         });
@@ -198,6 +255,8 @@ public class Game extends AppCompatActivity {
                 }
                 else
                     addScore("BOT");
+                aPerson = zemanBOT;
+                sBigBoing.run();
                 getLine("zemanBOT");
             }
         });
@@ -205,6 +264,10 @@ public class Game extends AppCompatActivity {
         biggerFaces.run();
 
         getLine();
+    }
+
+    @Override
+    public void onBackPressed() {
     }
 
     protected void getLine() {
