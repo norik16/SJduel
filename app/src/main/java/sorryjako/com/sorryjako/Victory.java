@@ -17,6 +17,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,6 +43,7 @@ public class Victory extends AppCompatActivity {
     TextView tScoreTOP;
     TextView elseTOP;
     TextView winTOP;
+
 
     ViewGroup backTOP;
     ViewGroup backBOT;
@@ -106,8 +108,8 @@ public class Victory extends AppCompatActivity {
             elseTOP.setText(" ");
             tScoreBOT.setText(spanOne);
             tScoreTOP.setText(spanTwo);
+            //CommonConfetti.explosion(l, 0, 0, new int[] { Color.BLUE, Color.CYAN, Color.GREEN, Color.RED, Color.YELLOW }).oneShot().setAccelerationX(10f);
 
-//            CommonConfetti.explosion(backBOT, 0, 0, new int[] { Color.BLUE, Color.CYAN, Color.GREEN, Color.RED, Color.YELLOW }).oneShot().setAccelerationX(10f);
         } else  {
             Spannable spanThree = new SpannableString(scoreBOT + ":" + scoreTOP);
             spanThree.setSpan(new ForegroundColorSpan(Color.parseColor("#EF0000")), 2, 4, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);

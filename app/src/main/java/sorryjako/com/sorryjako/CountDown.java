@@ -43,7 +43,8 @@ public class CountDown extends AppCompatActivity {
 
         setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-        mp = MediaPlayer.create(getApplicationContext(), R.raw.next_question);
+        mp = MediaPlayer.create(getApplicationContext(), R.raw.countdown);
+        mp.start();
 
         count = (TextView) findViewById(R.id.id_countdown_count_VT);
 
@@ -57,7 +58,6 @@ public class CountDown extends AppCompatActivity {
         final Runnable popUp = new Runnable() {
             @Override
             public void run() {
-                mp.start();
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                     count.animate().setDuration(0).scaleXBy(0.5f).scaleYBy(0.5f).withEndAction(popDown);
                 }
