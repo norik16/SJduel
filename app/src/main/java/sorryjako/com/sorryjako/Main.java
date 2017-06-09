@@ -14,6 +14,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 
 public class Main extends AppCompatActivity {
@@ -97,8 +98,9 @@ public class Main extends AppCompatActivity {
             if(resultCode == RESULT_OK) {
                     Intent iii = new Intent(getApplicationContext(), CountDown.class);
                     startActivityForResult(iii, 1);
-
             }
         }
+
+
     }
 }

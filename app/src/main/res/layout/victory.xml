@@ -73,25 +73,47 @@
 
     </LinearLayout>
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
         android:layout_marginBottom="15dp"
         android:layout_marginTop="20dp"
         android:layout_weight="1"
+        android:weightSum="0"
         android:background="@mipmap/bg_blue"
-        android:orientation="vertical">
+        android:orientation="horizontal">
 
+            <RelativeLayout
+                android:layout_weight="1"
+                android:layout_marginLeft="30dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <ImageButton
+                    android:id="@+id/id_victory_restart_BT"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#27286D"
+                    app:srcCompat="@mipmap/replay"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true" />
+            </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_marginRight="30dp"
+            android:layout_height="match_parent">
             <ImageButton
-                android:id="@+id/id_victory_restart_BT"
+                android:id="@+id/id_victory_end_BT"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="#27286D"
-                app:srcCompat="@mipmap/replay"
+                app:srcCompat="@mipmap/exit"
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true" />
-    </RelativeLayout>
+        </RelativeLayout>
+    </LinearLayout>
 
 
     <LinearLayout

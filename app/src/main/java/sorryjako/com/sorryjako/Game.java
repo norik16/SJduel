@@ -398,23 +398,22 @@ public class Game extends AppCompatActivity {
                             switch (person) {
                                 case "babisTOP":
                                     babisTOP.setImageResource(R.mipmap.babis_close);
-                                    redBar.setBackgroundResource(R.mipmap.bg_red);
-                                    blueBar.setBackgroundResource(R.mipmap.bg_blue);
+//                                    redBar.setBackgroundResource(R.mipmap.bg_red);
+//                                    blueBar.setBackgroundResource(R.mipmap.bg_blue);
                                     break;
                                 case "babisBOT":
                                     babisBOT.setImageResource(R.mipmap.babis_close);
-                                    blueBar.setBackgroundResource(R.mipmap.bg_blue);
-                                    redBar.setBackgroundResource(R.mipmap.bg_red);
+//                                    blueBar.setBackgroundResource(R.mipmap.bg_blue);
+//                                    redBar.setBackgroundResource(R.mipmap.bg_red);
                                     break;
                                 case "zemanTOP":
                                     zemanTOP.setImageResource(R.mipmap.zeman_close);
-                                    redBar.setBackgroundResource(R.mipmap.bg_red);
-                                    blueBar.setBackgroundResource(R.mipmap.bg_blue);
+//                                    redBar.setBackgroundResource(R.mipmap.bg_red);
+//                                    blueBar.setBackgroundResource(R.mipmap.bg_blue);
                                     break;
                                 case "zemanBOT":
                                     zemanBOT.setImageResource(R.mipmap.zeman_close);
-                                    blueBar.setBackgroundResource(R.mipmap.bg_blue);
-                                    redBar.setBackgroundResource(R.mipmap.bg_red);
+
                                     break;
                             }
                         Log.e("Game/clock", "ticked");
@@ -426,6 +425,9 @@ public class Game extends AppCompatActivity {
                         babisBOT.setImageResource(R.mipmap.babis_close);
                         zemanTOP.setImageResource(R.mipmap.zeman_close);
                         zemanBOT.setImageResource(R.mipmap.zeman_close);
+
+                        blueBar.setBackgroundResource(R.mipmap.bg_blue);
+                        redBar.setBackgroundResource(R.mipmap.bg_red);
 
                         zemanBOT.setEnabled(true);
                         zemanTOP.setEnabled(true);

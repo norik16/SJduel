@@ -31,6 +31,7 @@ public class Victory extends AppCompatActivity {
 
     static MediaPlayer mp;
     ImageButton restart;
+    ImageButton end;
 
     String scoreTOP;
     String scoreBOT;
@@ -93,6 +94,14 @@ public class Victory extends AppCompatActivity {
             }
         });
 
+        end = (ImageButton) findViewById(R.id.id_victory_end_BT);
+        end.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
         Random random = new Random();
         int money = random.nextInt(46) + 5;
 
@@ -129,6 +138,7 @@ public class Victory extends AppCompatActivity {
         @Override
         public void run() {
             makeBigger(restart.animate());
+            makeBigger(end.animate());
         }
 
         private void makeBigger(ViewPropertyAnimator a) {
@@ -145,6 +155,7 @@ public class Victory extends AppCompatActivity {
         @Override
         public void run() {
             makeBigger(restart.animate());
+            makeBigger(end.animate());
         }
 
         private void makeBigger(ViewPropertyAnimator a) {
