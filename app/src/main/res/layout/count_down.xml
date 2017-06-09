@@ -22,7 +22,7 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:layout_margin="20dp"
-            android:text="Přečti hlášku a klikni na obličej politika, co ji říká"
+            android:text="Čí to je hláška? Kdo dá první 10 bodů, vyhrává!"
             android:textAlignment="center"
             android:textColor="#27286D"
             android:textSize="22dp" />
@@ -58,7 +58,7 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:layout_margin="20dp"
-            android:text="Přečti hlášku a klikni na obličej politika, co ji říká"
+            android:text="Čí to je hláška? Kdo dá první 10 bodů, vyhrává!"
             android:textAlignment="center"
             android:textColor="#27286D"
             android:textSize="22dp" />

@@ -206,6 +206,8 @@ public class Game extends AppCompatActivity {
                 Log.e("Game/onClick", "clicked...");
                 if (actPerson.equals("B")) {
                     addScore("TOP");
+                    mp = MediaPlayer.create(getApplicationContext(), R.raw.next_question);
+                    mp.start();
 
                 } else {
                     mpBabis = MediaPlayer.create(getApplicationContext(), R.raw.babis);
@@ -224,6 +226,8 @@ public class Game extends AppCompatActivity {
                 Log.e("Game/onClick", "clicked...");
                 if (actPerson.equals("B"))  {
                     addScore("BOT");
+                    mp = MediaPlayer.create(getApplicationContext(), R.raw.next_question);
+                    mp.start();
                 }
                 else{
                     mpBabis = MediaPlayer.create(getApplicationContext(), R.raw.babis);
@@ -245,6 +249,8 @@ public class Game extends AppCompatActivity {
                     mpZeman.start();
                 } else{
                     addScore("TOP");
+                    mp = MediaPlayer.create(getApplicationContext(), R.raw.next_question);
+                    mp.start();
                 }
                 aPerson = zemanTOP;
                 sBigBoing.run();
@@ -260,8 +266,12 @@ public class Game extends AppCompatActivity {
                     mpZeman = MediaPlayer.create(getApplicationContext(), R.raw.zeman);
                     mpZeman.start();
                 }
-                else
+                else{
                     addScore("BOT");
+                    mp = MediaPlayer.create(getApplicationContext(), R.raw.next_question);
+                    mp.start();
+                }
+
                 aPerson = zemanBOT;
                 sBigBoing.run();
                 getLine("zemanBOT");
@@ -347,7 +357,6 @@ public class Game extends AppCompatActivity {
                                     break;
                             }
                         Log.e("Game/clock", "ticked");
-                        mp.start();
                     }
 
                     @Override

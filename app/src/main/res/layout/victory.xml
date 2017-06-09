@@ -27,7 +27,7 @@
                 android:id="@+id/id_victory_elseTOP_TV"
                 android:layout_width="match_parent"
                 android:textSize="16dp"
-                android:textColor="#27286D"
+                android:textColor="#EF0000"
                 android:paddingBottom="10dp"
                 android:text="x"
                 android:rotation="180"
@@ -43,7 +43,7 @@
             <TextView
                 android:id="@+id/id_victory_scoreTOP_TV"
                 android:layout_width="match_parent"
-                android:textColor="#27286D"
+                android:textColor="#EF0000"
                 android:gravity="center"
                 android:text="x"
                 android:textStyle="bold"
@@ -67,55 +67,31 @@
                 android:rotation="180"
                 android:textStyle="bold"
                 android:textSize="40dp"
-                android:textColor="#27286D"
+                android:textColor="#EF0000"
                 android:text="XXXXAXXXXX"/>
         </LinearLayout>
 
     </LinearLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:weightSum="0"
+        android:layout_gravity="center"
         android:layout_marginBottom="15dp"
         android:layout_marginTop="20dp"
-        android:layout_gravity="center"
+        android:layout_weight="1"
         android:background="@mipmap/bg_blue"
         android:orientation="vertical">
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_weight="1"
-            android:layout_marginBottom="5dp"
-            android:layout_gravity="center"
-            android:layout_height="match_parent">
 
             <ImageButton
-                android:layout_marginTop="20dp"
                 android:id="@+id/id_victory_restart_BT"
                 android:layout_width="wrap_content"
-                android:layout_gravity="bottom"
                 android:layout_height="wrap_content"
                 android:background="#27286D"
                 app:srcCompat="@mipmap/replay"
-                android:layout_alignParentBottom="true"
+                android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true" />
-        </RelativeLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_weight="2"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="Hrát znovu"
-                android:gravity="center"
-                android:layout_gravity="center"
-                android:layout_marginBottom="15dp"
-                android:textColor="#FFFFFF"/>
-        </LinearLayout>
-    </LinearLayout>
+    </RelativeLayout>
 
 
     <LinearLayout

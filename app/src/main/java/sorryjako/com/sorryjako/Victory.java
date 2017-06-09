@@ -98,29 +98,25 @@ public class Victory extends AppCompatActivity {
 
 
         if(winner.equals("B"))  {
-            Spannable spanOne = new SpannableString(scoreBOT + ":" + scoreTOP);
-            spanOne.setSpan(new ForegroundColorSpan(Color.parseColor("#EF0000")), 3, 4, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-            Spannable spanTwo = new SpannableString(scoreTOP + ":" + scoreBOT);
-            spanTwo.setSpan(new ForegroundColorSpan(Color.parseColor("#EF0000")), 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+//            Spannable spanOne = new SpannableString(scoreBOT + ":" + scoreTOP);
+//            spanOne.setSpan(new ForegroundColorSpan(Color.parseColor("#EF0000")), 3, 4, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+//            Spannable spanTwo = new SpannableString(scoreTOP + ":" + scoreBOT);
+//            spanTwo.setSpan(new ForegroundColorSpan(Color.parseColor("#27286D")), 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             winBOT.setText("Vítězství");
             winTOP.setText("Bude líp...");
-            elseBOT.setText("ZÍSKÁVÁŠ DOTACI VE VÝŠI " + money +" MILIONŮ");
+            elseBOT.setText("ZÍSKÁVÁŠ DOTACI VE VÝŠI " + money +" MILIONŮ KČ");
             elseTOP.setText(" ");
-            tScoreBOT.setText(spanOne);
-            tScoreTOP.setText(spanTwo);
+            tScoreBOT.setText(scoreBOT + ":" + scoreTOP);
+            tScoreTOP.setText(scoreTOP + ":" + scoreBOT);
             //CommonConfetti.explosion(l, 0, 0, new int[] { Color.BLUE, Color.CYAN, Color.GREEN, Color.RED, Color.YELLOW }).oneShot().setAccelerationX(10f);
 
         } else  {
-            Spannable spanThree = new SpannableString(scoreBOT + ":" + scoreTOP);
-            spanThree.setSpan(new ForegroundColorSpan(Color.parseColor("#EF0000")), 2, 4, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-            Spannable spanFour = new SpannableString(scoreTOP + ":" + scoreBOT);
-            spanFour.setSpan(new ForegroundColorSpan(Color.parseColor("#EF0000")), 0, 2, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             winBOT.setText("Bude líp...");
             winTOP.setText("Vítězství");
             elseBOT.setText(" ");
-            elseTOP.setText("ZÍSKÁVÁŠ DOTACI VE VÝŠI " + money +" MILIONŮ");
-            tScoreBOT.setText(spanThree);
-            tScoreTOP.setText(spanFour);
+            elseTOP.setText("ZÍSKÁVÁŠ DOTACI VE VÝŠI " + money +" MILIONŮ KČ");
+            tScoreBOT.setText(scoreBOT + ":" + scoreTOP);
+            tScoreTOP.setText(scoreTOP + ":" + scoreBOT);
         }
         biggerFaces.run();
     }
