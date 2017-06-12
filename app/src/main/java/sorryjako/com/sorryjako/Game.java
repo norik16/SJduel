@@ -35,6 +35,9 @@ public class Game extends AppCompatActivity {
     static final int globalDelay = 1000;
     static final int facesFloatingPeriod = 1200;
     static final float facesFloatingFactor = 0.06f;
+    static MediaPlayer mp;
+    static MediaPlayer mpZeman;
+    static MediaPlayer mpBabis;
     ImageButton babisTOP;
     ImageButton babisBOT;
     ImageButton zemanTOP;
@@ -154,10 +157,6 @@ public class Game extends AppCompatActivity {
 
     LinearLayout blueBar;
     LinearLayout redBar;
-
-    static MediaPlayer mp;
-    static MediaPlayer mpZeman;
-    static MediaPlayer mpBabis;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
