@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "983444392372",
+    "firebase_url": "https://sorryjakoduel.firebaseio.com",
+    "project_id": "sorryjakoduel",
+    "storage_bucket": "sorryjakoduel.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:983444392372:android:f372dc13cc30ba94",
+        "android_client_info": {
+          "package_name": "sorryjako.com.sorryjako"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "983444392372-gt0km6jrdnqdbmc68o77n1d3h3hbiufj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDqosdMDUk1T4H_BwlV1JeRXAFhXbRnWfc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
