@@ -23,7 +23,7 @@ public class Main extends AppCompatActivity {
     static final float floatingFactor = 0.1f;
 
     static MediaPlayer mp;
-
+    int duration = 0;
     ImageButton play;
 
     @Override
@@ -36,11 +36,11 @@ public class Main extends AppCompatActivity {
 
         setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-        if(mp != null) {
-            mp.release();
-        }
-        mp = MediaPlayer.create(getApplicationContext(), R.raw.libuse);
-        mp.start();
+//        if(mp != null) {
+//            mp.release();
+//        }
+//        mp = MediaPlayer.create(getApplicationContext(), R.raw.libuse);
+//        mp.start();
 
         play = (ImageButton) findViewById(R.id.id_main_play_BT);
 
@@ -107,14 +107,37 @@ public class Main extends AppCompatActivity {
                     Intent iii = new Intent(getApplicationContext(), CountDown.class);
                     startActivityForResult(iii, 1);
             } else {
-                if(mp != null) {
-                    mp.release();
-                }
-                mp = MediaPlayer.create(getApplicationContext(), R.raw.libuse);
-                mp.start();
+//                if(mp != null) {
+//                    mp.release();
+//                }
+//                mp = MediaPlayer.create(getApplicationContext(), R.raw.libuse);
+//                mp.start();
             }
         }
 
+
+    }
+
+    @Override
+    public void onResume()
+    {
+        super.onResume();
+        mp = MediaPlayer.create(getApplicationContext(), R.raw.libuse);
+        mp.start();
+        //mp.seekTo(duration);
+    }
+
+
+    @Override
+    public void onPause()
+    {
+        super.onPause();
+        if(mp != null) {
+//            duration = mp.getDuration();
+            mp.stop();
+            mp.reset();
+            mp.release();
+        }
 
     }
 }
