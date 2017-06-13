@@ -59,7 +59,7 @@ public class Victory extends AppCompatActivity {
 
         setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-        mp = MediaPlayer.create(getApplicationContext(),R.raw.finish);
+        mp = MediaPlayer.create(getApplicationContext(),R.raw.hallelujah);
         mp.start();
 
         Intent i = getIntent();
@@ -89,6 +89,8 @@ public class Victory extends AppCompatActivity {
         restart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                mp.stop();
+                mp.reset();
                 setResult(RESULT_OK);
                 finish();
             }
@@ -98,6 +100,8 @@ public class Victory extends AppCompatActivity {
         end.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                mp.stop();
+                mp.reset();
                 finish();
             }
         });

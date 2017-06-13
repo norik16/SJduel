@@ -3,6 +3,7 @@ package sorryjako.com.sorryjako;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -21,6 +22,7 @@ public class Main extends AppCompatActivity {
     static final int floatingPeriod = 1000;
     static final float floatingFactor = 0.1f;
 
+    static MediaPlayer mp;
 
     ImageButton play;
 
@@ -34,13 +36,16 @@ public class Main extends AppCompatActivity {
 
         setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-
+        mp = MediaPlayer.create(getApplicationContext(), R.raw.libuse);
+        mp.start();
 
         play = (ImageButton) findViewById(R.id.id_main_play_BT);
 
         play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                mp.stop();
+                mp.reset();
                 Intent i = new Intent(getApplicationContext(), CountDown.class);
                 startActivityForResult(i, 1);
             }
@@ -98,6 +103,9 @@ public class Main extends AppCompatActivity {
             if(resultCode == RESULT_OK) {
                     Intent iii = new Intent(getApplicationContext(), CountDown.class);
                     startActivityForResult(iii, 1);
+            } else {
+                mp = MediaPlayer.create(getApplicationContext(), R.raw.libuse);
+                mp.start();
             }
         }
 
