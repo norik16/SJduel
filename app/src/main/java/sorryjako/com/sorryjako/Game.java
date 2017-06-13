@@ -187,6 +187,9 @@ public class Game extends AppCompatActivity {
         resultBOT = (ImageView) findViewById(R.id.id_game_resultBOT_IV);
         resultTOP = (ImageView) findViewById(R.id.id_game_resultTOP_IV);
 
+        if(mp != null) {
+            mp.release();
+        }
         mp = MediaPlayer.create(getApplicationContext(), R.raw.next_question);
         mp.start();
 
@@ -221,11 +224,17 @@ public class Game extends AppCompatActivity {
                 if (actPerson.equals("B")) {
                     addScore("TOP");
                     truefalse = 1;
+                    if(mp != null) {
+                        mp.release();
+                    }
                     mp = MediaPlayer.create(getApplicationContext(), R.raw.next_question);
                     mp.start();
                     resultTOP.setImageResource(R.mipmap.red_true);
                     resultBOT.setImageResource(R.mipmap.blue_fault);
                 } else {
+                    if(mpBabis != null) {
+                        mp.release();
+                    }
                     mpBabis = MediaPlayer.create(getApplicationContext(), R.raw.babis);
                     mpBabis.start();
                     truefalse = 0;
@@ -246,12 +255,18 @@ public class Game extends AppCompatActivity {
                 if (actPerson.equals("B"))  {
                     addScore("BOT");
                     truefalse = 0;
+                    if(mp != null) {
+                        mp.release();
+                    }
                     mp = MediaPlayer.create(getApplicationContext(), R.raw.next_question);
                     mp.start();
                     resultTOP.setImageResource(R.mipmap.red_fault);
                     resultBOT.setImageResource(R.mipmap.blue_true);
                 }
                 else{
+                    if(mpBabis != null) {
+                        mp.release();
+                    }
                     mpBabis = MediaPlayer.create(getApplicationContext(), R.raw.babis);
                     mpBabis.start();
                     truefalse = 1;
@@ -271,6 +286,9 @@ public class Game extends AppCompatActivity {
                 if (actPerson.equals("B")) {
                     addScore("BOT");
                     truefalse = 0;
+                    if(mpZeman != null) {
+                        mp.release();
+                    }
                     mpZeman = MediaPlayer.create(getApplicationContext(), R.raw.zeman);
                     mpZeman.start();
                     resultTOP.setImageResource(R.mipmap.red_fault);
@@ -278,6 +296,9 @@ public class Game extends AppCompatActivity {
                 } else{
                     addScore("TOP");
                     truefalse = 1;
+                    if(mp != null) {
+                        mp.release();
+                    }
                     mp = MediaPlayer.create(getApplicationContext(), R.raw.next_question);
                     mp.start();
                     resultTOP.setImageResource(R.mipmap.red_true);
@@ -295,6 +316,9 @@ public class Game extends AppCompatActivity {
                 if (actPerson.equals("B")) {
                     addScore("TOP");
                     truefalse = 1;
+                    if(mpZeman != null) {
+                        mp.release();
+                    }
                     mpZeman = MediaPlayer.create(getApplicationContext(), R.raw.zeman);
                     mpZeman.start();
                     resultTOP.setImageResource(R.mipmap.red_true);
@@ -303,6 +327,9 @@ public class Game extends AppCompatActivity {
                 else{
                     addScore("BOT");
                     truefalse = 0;
+                    if(mp != null) {
+                        mp.release();
+                    }
                     mp = MediaPlayer.create(getApplicationContext(), R.raw.next_question);
                     mp.start();
                     resultTOP.setImageResource(R.mipmap.red_fault);

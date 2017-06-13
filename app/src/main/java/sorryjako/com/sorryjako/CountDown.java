@@ -43,6 +43,9 @@ public class CountDown extends AppCompatActivity {
 
         setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
+        if(mp != null) {
+            mp.release();
+        }
         mp = MediaPlayer.create(getApplicationContext(), R.raw.countdown);
         mp.start();
 

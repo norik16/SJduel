@@ -36,6 +36,9 @@ public class Main extends AppCompatActivity {
 
         setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
+        if(mp != null) {
+            mp.release();
+        }
         mp = MediaPlayer.create(getApplicationContext(), R.raw.libuse);
         mp.start();
 
@@ -104,6 +107,9 @@ public class Main extends AppCompatActivity {
                     Intent iii = new Intent(getApplicationContext(), CountDown.class);
                     startActivityForResult(iii, 1);
             } else {
+                if(mp != null) {
+                    mp.release();
+                }
                 mp = MediaPlayer.create(getApplicationContext(), R.raw.libuse);
                 mp.start();
             }
