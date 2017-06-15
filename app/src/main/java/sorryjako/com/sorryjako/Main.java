@@ -17,6 +17,8 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
+
 
 public class Main extends AppCompatActivity {
     static final int floatingPeriod = 1000;
@@ -25,6 +27,8 @@ public class Main extends AppCompatActivity {
     static MediaPlayer mp;
     int duration = 0;
     ImageButton play;
+
+    private FirebaseAnalytics mFirebaseAnalytics;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +46,9 @@ public class Main extends AppCompatActivity {
 //        mp = MediaPlayer.create(getApplicationContext(), R.raw.libuse);
 //        mp.start();
 
+        // Obtain the FirebaseAnalytics instance.
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+
         play = (ImageButton) findViewById(R.id.id_main_play_BT);
 
         play.setOnClickListener(new View.OnClickListener() {
@@ -53,6 +60,12 @@ public class Main extends AppCompatActivity {
                 startActivityForResult(i, 1);
             }
         });
+
+        Bundle bundle = new Bundle();
+//        bundle.putString(FirebaseAnalytics.Param.ITEM_ID, id);
+        bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, "Game opened");
+//        bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "image");
+        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.APP_OPEN, bundle);
 
         biggerFaces.run();
     }

@@ -1,27 +1,27 @@
 {
   "project_info": {
-    "project_number": "983444392372",
-    "firebase_url": "https://sorryjakoduel.firebaseio.com",
-    "project_id": "sorryjakoduel",
-    "storage_bucket": "sorryjakoduel.appspot.com"
+    "project_number": "562038639113",
+    "firebase_url": "https://sorry-jako.firebaseio.com",
+    "project_id": "sorry-jako",
+    "storage_bucket": "sorry-jako.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:983444392372:android:f372dc13cc30ba94",
+        "mobilesdk_app_id": "1:562038639113:android:f372dc13cc30ba94",
         "android_client_info": {
           "package_name": "sorryjako.com.sorryjako"
         }
       },
       "oauth_client": [
         {
-          "client_id": "983444392372-gt0km6jrdnqdbmc68o77n1d3h3hbiufj.apps.googleusercontent.com",
+          "client_id": "562038639113-90sjhjil34dai8tio4v0mn579m2s8tre.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDqosdMDUk1T4H_BwlV1JeRXAFhXbRnWfc"
+          "current_key": "AIzaSyDMCJlaOWh0DeaX2NFJbAzcJ4PHEeve4Pg"
         }
       ],
       "services": {

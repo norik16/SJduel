@@ -23,6 +23,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
+
 import java.util.List;
 import java.util.Locale;
 import java.util.Random;
@@ -42,6 +44,8 @@ public class Game extends AppCompatActivity {
     ImageButton babisBOT;
     ImageButton zemanTOP;
     ImageButton zemanBOT;
+
+    private FirebaseAnalytics mFirebaseAnalytics;
     
     ImageButton aPerson;
     final Runnable biggerFaces = new Runnable() {
@@ -166,8 +170,9 @@ public class Game extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.game);
 
-
         setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
         babisTOP = (ImageButton) findViewById(R.id.id_game_babisTOP_BT);
         babisBOT = (ImageButton) findViewById(R.id.id_game_babisBOT_BT);
@@ -232,6 +237,10 @@ public class Game extends AppCompatActivity {
                     resultTOP.setImageResource(R.mipmap.red_true);
                     resultBOT.setImageResource(R.mipmap.blue_fault);
                 } else {
+                    Bundle bundle = new Bundle();
+                    bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, "Wrong answer");
+                    bundle.putString(FirebaseAnalytics.Param.CONTENT, textBOT.getText().toString());
+                    mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
                     if(mpBabis != null) {
                         mp.release();
                     }
@@ -264,6 +273,10 @@ public class Game extends AppCompatActivity {
                     resultBOT.setImageResource(R.mipmap.blue_true);
                 }
                 else{
+                    Bundle bundle = new Bundle();
+                    bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, "Wrong answer");
+                    bundle.putString(FirebaseAnalytics.Param.CONTENT, textBOT.getText().toString());
+                    mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
                     if(mpBabis != null) {
                         mp.release();
                     }
@@ -284,6 +297,10 @@ public class Game extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (actPerson.equals("B")) {
+                    Bundle bundle = new Bundle();
+                    bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, "Wrong answer");
+                    bundle.putString(FirebaseAnalytics.Param.CONTENT, textBOT.getText().toString());
+                    mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
                     addScore("BOT");
                     truefalse = 0;
                     if(mpZeman != null) {
@@ -314,6 +331,10 @@ public class Game extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (actPerson.equals("B")) {
+                    Bundle bundle = new Bundle();
+                    bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, "Wrong answer");
+                    bundle.putString(FirebaseAnalytics.Param.CONTENT, textBOT.getText().toString());
+                    mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
                     addScore("TOP");
                     truefalse = 1;
                     if(mpZeman != null) {
@@ -519,6 +540,11 @@ public class Game extends AppCompatActivity {
         }
 
         if (scoreTOP >= 10) {
+            Bundle bundle = new Bundle();
+            bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, "Points at the end");
+            bundle.putString(FirebaseAnalytics.Param.LEVEL, Integer.toString(scoreBOT+scoreTOP));
+            mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
+
             Intent i = new Intent();
             i.putExtra("winner", "A");
             i.putExtra("scoreTOP", Integer.toString(scoreTOP));
@@ -526,6 +552,11 @@ public class Game extends AppCompatActivity {
             setResult(RESULT_OK, i);
             finish();
         } else if(scoreBOT >= 10){
+            Bundle bundle = new Bundle();
+            bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, "Points at the end");
+            bundle.putString(FirebaseAnalytics.Param.LEVEL, Integer.toString(scoreBOT+scoreTOP));
+            mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
+
             Intent ii = new Intent();
             ii.putExtra("winner", "B");
             ii.putExtra("scoreTOP", Integer.toString(scoreTOP));
