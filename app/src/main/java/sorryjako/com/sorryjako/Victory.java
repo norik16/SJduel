@@ -17,6 +17,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -44,6 +45,9 @@ public class Victory extends AppCompatActivity {
     TextView tScoreTOP;
     TextView elseTOP;
     TextView winTOP;
+
+    ViewGroup conffetiBOT;
+    ViewGroup conffetiTOP;
 
 
     ViewGroup backTOP;
@@ -85,6 +89,9 @@ public class Victory extends AppCompatActivity {
         backTOP = (ViewGroup) findViewById(R.id.id_victory_layoutTOP);
         backBOT = (ViewGroup) findViewById(R.id.id_victory_layoutBOT);
 
+        conffetiBOT = (ViewGroup) findViewById(R.id.id_victory_conffetiBOT_IV);
+        conffetiTOP = (ViewGroup) findViewById(R.id.id_victory_conffetiTOP_IV);
+
         restart = (ImageButton) findViewById(R.id.id_victory_restart_BT);
         restart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -121,7 +128,7 @@ public class Victory extends AppCompatActivity {
             elseTOP.setText(" ");
             tScoreBOT.setText(scoreBOT + ":" + scoreTOP);
             tScoreTOP.setText(scoreTOP + ":" + scoreBOT);
-            //CommonConfetti.explosion(l, 0, 0, new int[] { Color.BLUE, Color.CYAN, Color.GREEN, Color.RED, Color.YELLOW }).oneShot().setAccelerationX(10f);
+//            CommonConfetti.rainingConfetti(conffetiBOT, new int[] { Color.BLUE, Color.CYAN, Color.GREEN, Color.RED, Color.YELLOW }).infinite();
 
         } else  {
             winBOT.setText("Bude líp...");
@@ -160,6 +167,12 @@ public class Victory extends AppCompatActivity {
         public void run() {
             makeBigger(restart.animate());
             makeBigger(end.animate());
+//            CommonConfetti.explosion(conffetiBOT, backBOT.getWidth()/2, backBOT.getHeight(), new int[] { Color.BLUE, Color.CYAN, Color.GREEN, Color.RED, Color.YELLOW });
+//            CommonConfetti.explosion(conffetiBOT, backBOT.getWidth()/2, backBOT.getHeight(), new int[] { Color.BLUE, Color.CYAN, Color.GREEN, Color.RED, Color.YELLOW })
+//                    .stream(1000).disableFadeOut().setVelocityY(-250, 20).setVelocityX(0,60).setAccelerationY(-150, 60).setNumInitialCount(700).setAccelerationX(0, 60).animate();
+
+//            CommonConfetti.rainingConfetti(conffetiBOT, new int[] { Color.BLUE }).oneShot()
+//                    .setVelocityY(-250, 20).setVelocityX(0,60).setAccelerationY(-150, 60).setNumInitialCount(700).setAccelerationX(0, 60).animate();
         }
 
         private void makeBigger(ViewPropertyAnimator a) {
@@ -172,4 +185,15 @@ public class Victory extends AppCompatActivity {
             a.start();
         }
     };
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+//        CommonConfetti.explosion(conffetiBOT, backBOT.getWidth()/2, backBOT.getHeight(), new int[] { Color.BLUE, Color.CYAN, Color.GREEN, Color.RED, Color.YELLOW });
+//        CommonConfetti.rainingConfetti(conffetiBOT, new int[] { Color.BLUE, Color.CYAN, Color.GREEN, Color.RED, Color.YELLOW }).infinite();
+        if (winner.equals("B"))
+            CommonConfetti.rainingConfetti(conffetiBOT, new int[] { Color.rgb(39,40,109) /*Color.BLUE, Color.CYAN, Color.GREEN, Color.RED, Color.YELLOW */}).oneShot().setNumInitialCount(120).setVelocityY(42, 24);
+        else
+            CommonConfetti.rainingConfetti(conffetiTOP, new int[] { Color.rgb(239,0,0)}).oneShot().setNumInitialCount(120).setVelocityY(42, 24);
+    }
 }
