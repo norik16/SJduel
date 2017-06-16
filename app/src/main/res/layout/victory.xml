@@ -100,20 +100,37 @@
         android:background="@mipmap/bg_blue"
         android:orientation="horizontal">
 
-            <RelativeLayout
-                android:layout_weight="1"
-                android:layout_marginLeft="30dp"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-                <ImageButton
-                    android:id="@+id/id_victory_restart_BT"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="#27286D"
-                    app:srcCompat="@mipmap/replay"
-                    android:layout_centerVertical="true"
-                    android:layout_centerHorizontal="true" />
-            </RelativeLayout>
+        <RelativeLayout
+            android:layout_weight="1"
+            android:layout_marginLeft="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageButton
+                android:id="@+id/id_victory_restart_BT"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#27286D"
+                app:srcCompat="@mipmap/replay"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_weight="1"
+            android:layout_marginLeft="0dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/id_victory_count_VT"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:text="10"
+                android:textAlignment="center"
+                android:textColor="#FFF"
+                android:textSize="42dp" />
+        </RelativeLayout>
 
         <RelativeLayout
             android:layout_weight="1"

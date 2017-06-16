@@ -5,6 +5,7 @@ import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Build;
+import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Spannable;
@@ -29,6 +30,12 @@ import java.util.Random;
 public class Victory extends AppCompatActivity {
     static final int floatingPeriod = 1000;
     static final float floatingFactor = 0.1f;
+    static final int countFrom = 8-3;
+    static final int rythm = 1180;
+    static final int delay = 150;
+    static final int popDuration = 250;
+
+    int lastChange;
 
     static MediaPlayer mp;
     ImageButton restart;
@@ -49,9 +56,10 @@ public class Victory extends AppCompatActivity {
     ViewGroup conffetiBOT;
     ViewGroup conffetiTOP;
 
-
     ViewGroup backTOP;
     ViewGroup backBOT;
+
+    TextView count;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,15 +69,15 @@ public class Victory extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.victory);
 
-        setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-        mp = MediaPlayer.create(getApplicationContext(),R.raw.hallelujah);
+        mp = MediaPlayer.create(getApplicationContext(), R.raw.hallelujah);
         mp.start();
 
         Intent i = getIntent();
         Bundle bundle = i.getExtras();
 
-        if(bundle != null) {
+        if (bundle != null) {
             scoreBOT = (String) bundle.get("scoreBOT");
             scoreTOP = (String) bundle.get("scoreTOP");
             winner = (String) bundle.get("winner");
@@ -91,6 +99,10 @@ public class Victory extends AppCompatActivity {
 
         conffetiBOT = (ViewGroup) findViewById(R.id.id_victory_conffetiBOT_IV);
         conffetiTOP = (ViewGroup) findViewById(R.id.id_victory_conffetiTOP_IV);
+
+        count = (TextView) findViewById(R.id.id_victory_count_VT);
+
+        lastChange = countFrom;
 
         restart = (ImageButton) findViewById(R.id.id_victory_restart_BT);
         restart.setOnClickListener(new View.OnClickListener() {
@@ -117,28 +129,81 @@ public class Victory extends AppCompatActivity {
         int money = random.nextInt(46) + 5;
 
 
-        if(winner.equals("B"))  {
+        if (winner.equals("B")) {
 //            Spannable spanOne = new SpannableString(scoreBOT + ":" + scoreTOP);
 //            spanOne.setSpan(new ForegroundColorSpan(Color.parseColor("#EF0000")), 3, 4, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 //            Spannable spanTwo = new SpannableString(scoreTOP + ":" + scoreBOT);
 //            spanTwo.setSpan(new ForegroundColorSpan(Color.parseColor("#27286D")), 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             winBOT.setText("Vítězství");
             winTOP.setText("Bude líp...");
-            elseBOT.setText("ZÍSKÁVÁŠ DOTACI VE VÝŠI " + money +" MILIONŮ KČ");
+            elseBOT.setText("ZÍSKÁVÁŠ DOTACI VE VÝŠI " + money + " MILIONŮ KČ");
             elseTOP.setText(" ");
             tScoreBOT.setText(scoreBOT + ":" + scoreTOP);
             tScoreTOP.setText(scoreTOP + ":" + scoreBOT);
 //            CommonConfetti.rainingConfetti(conffetiBOT, new int[] { Color.BLUE, Color.CYAN, Color.GREEN, Color.RED, Color.YELLOW }).infinite();
 
-        } else  {
+        } else {
             winBOT.setText("Bude líp...");
             winTOP.setText("Vítězství");
             elseBOT.setText(" ");
-            elseTOP.setText("ZÍSKÁVÁŠ DOTACI VE VÝŠI " + money +" MILIONŮ KČ");
+            elseTOP.setText("ZÍSKÁVÁŠ DOTACI VE VÝŠI " + money + " MILIONŮ KČ");
             tScoreBOT.setText(scoreBOT + ":" + scoreTOP);
             tScoreTOP.setText(scoreTOP + ":" + scoreBOT);
         }
         biggerFaces.run();
+
+        final Runnable popDown = new Runnable() {
+            @Override
+            public void run() {
+                count.animate().setDuration(popDuration).scaleXBy(-0.5f).scaleYBy(-0.5f);
+            }
+        };
+
+        final Runnable popUp = new Runnable() {
+            @Override
+            public void run() {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                    count.animate().setDuration(0).scaleXBy(0.5f).scaleYBy(0.5f).withEndAction(popDown);
+                }
+            }
+        };
+
+        new CountDownTimer(delay, delay) {
+
+            @Override
+            public void onTick(long millisUntilFinished) {
+
+            }
+
+            @Override
+            public void onFinish() {
+                new CountDownTimer(countFrom * rythm, 1) {
+
+                    @Override
+                    public void onTick(long millisUntilFinished) {
+                        if (millisUntilFinished / rythm <= lastChange) {
+                            count.setText(Long.toString(lastChange + 4));
+                            popUp.run();
+                            lastChange--;
+                        }
+                    }
+
+                    @Override
+                    public void onFinish() {
+//                Intent i = new Intent(getApplicationContext(), Game.class);
+//                startActivityForResult(i, 1);
+                        count.setText("3");
+                        count.animate().scaleXBy(0.5f).scaleYBy(0.5f).setDuration(0);
+//                Intent i = new Intent(getApplicationContext(), Game.class);
+//                startActivityForResult(i, 5);
+                        setResult(RESULT_OK);
+                        finish();
+                    }
+                }.start();
+            }
+
+        }.start();
+
     }
 
     @Override
@@ -192,8 +257,8 @@ public class Victory extends AppCompatActivity {
 //        CommonConfetti.explosion(conffetiBOT, backBOT.getWidth()/2, backBOT.getHeight(), new int[] { Color.BLUE, Color.CYAN, Color.GREEN, Color.RED, Color.YELLOW });
 //        CommonConfetti.rainingConfetti(conffetiBOT, new int[] { Color.BLUE, Color.CYAN, Color.GREEN, Color.RED, Color.YELLOW }).infinite();
         if (winner.equals("B"))
-            CommonConfetti.rainingConfetti(conffetiBOT, new int[] { Color.rgb(39,40,109) /*Color.BLUE, Color.CYAN, Color.GREEN, Color.RED, Color.YELLOW */}).oneShot().setNumInitialCount(120).setVelocityY(42, 24);
+            CommonConfetti.rainingConfetti(conffetiBOT, new int[] { Color.rgb(39,40,109) /*Color.BLUE, Color.CYAN, Color.GREEN, Color.RED, Color.YELLOW */}).oneShot().setNumInitialCount(120).setVelocityY(36, 20);
         else
-            CommonConfetti.rainingConfetti(conffetiTOP, new int[] { Color.rgb(239,0,0)}).oneShot().setNumInitialCount(120).setVelocityY(42, 24);
+            CommonConfetti.rainingConfetti(conffetiTOP, new int[] { Color.rgb(239,0,0)}).oneShot().setNumInitialCount(120).setVelocityY(36, 20);
     }
 }
