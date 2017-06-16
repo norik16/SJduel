@@ -207,6 +207,9 @@ public class Game extends AppCompatActivity {
         textTOP.setText("Sorry Jako");
         actPerson = "B";
 
+        resultBOT.setVisibility(View.INVISIBLE);
+        resultTOP.setVisibility(View.INVISIBLE);
+
 
         lastLine = 2;
         scoreTOP = 0;
