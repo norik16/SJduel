@@ -107,7 +107,7 @@ public class Database extends SQLiteOpenHelper {
         addInformations("Já jsem jen teoretický miliardář", "B",2,db);
         addInformations("Já to odmítám!!!!", "B",2,db);
         addInformations("Co mi to tu podsouváte?", "B",1,db);
-        addInformations("Sobotku bych nezaměstnali ani na recepci", "B",1,db);
+        addInformations("Sobotku bych nezaměstnal ani na recepci", "B",1,db);
         addInformations("Čau lidi!", "B",2,db);
         addInformations("Pan premiér tomu nerozumí, protože nikdy nepracoval", "B",2,db);
         addInformations("Ano, bude líp", "B",1,db);

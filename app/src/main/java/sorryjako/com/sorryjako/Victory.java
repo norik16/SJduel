@@ -30,9 +30,6 @@ import java.util.Random;
 public class Victory extends AppCompatActivity {
     static final int floatingPeriod = 1000;
     static final float floatingFactor = 0.1f;
-    static final int countFrom = 8-3;
-    static final int rythm = 1180;
-    static final int delay = 150;
     static final int popDuration = 250;
 
     int lastChange;
@@ -45,21 +42,19 @@ public class Victory extends AppCompatActivity {
     String scoreBOT;
     String winner;
 
-    TextView tScoreBOT;
-    TextView elseBOT;
-    TextView winBOT;
+    AutoResizeTextView tScoreBOT;
+    AutoResizeTextView elseBOT;
+    AutoResizeTextView winBOT;
 
-    TextView tScoreTOP;
-    TextView elseTOP;
-    TextView winTOP;
+    AutoResizeTextView tScoreTOP;
+    AutoResizeTextView elseTOP;
+    AutoResizeTextView winTOP;
 
     ViewGroup conffetiBOT;
     ViewGroup conffetiTOP;
 
     ViewGroup backTOP;
     ViewGroup backBOT;
-
-    TextView count;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,23 +81,19 @@ public class Victory extends AppCompatActivity {
             //Toast.makeText(getApplicationContext(), "Sorry jako, problém", Toast.LENGTH_SHORT).show();
         }
 
-        tScoreBOT = (TextView) findViewById(R.id.id_victory_scoreBOT_TV);
-        elseBOT = (TextView) findViewById(R.id.id_victory_elseBOT_TV);
-        winBOT = (TextView) findViewById(R.id.id_victory_winBOT_TV);
+        tScoreBOT = (AutoResizeTextView) findViewById(R.id.id_victory_scoreBOT_TV);
+        elseBOT = (AutoResizeTextView) findViewById(R.id.id_victory_elseBOT_TV);
+        winBOT = (AutoResizeTextView) findViewById(R.id.id_victory_winBOT_TV);
 
-        tScoreTOP = (TextView) findViewById(R.id.id_victory_scoreTOP_TV);
-        elseTOP = (TextView) findViewById(R.id.id_victory_elseTOP_TV);
-        winTOP = (TextView) findViewById(R.id.id_victory_winTOP_TV);
+        tScoreTOP = (AutoResizeTextView) findViewById(R.id.id_victory_scoreTOP_TV);
+        elseTOP = (AutoResizeTextView) findViewById(R.id.id_victory_elseTOP_TV);
+        winTOP = (AutoResizeTextView) findViewById(R.id.id_victory_winTOP_TV);
 
         backTOP = (ViewGroup) findViewById(R.id.id_victory_layoutTOP);
         backBOT = (ViewGroup) findViewById(R.id.id_victory_layoutBOT);
 
         conffetiBOT = (ViewGroup) findViewById(R.id.id_victory_conffetiBOT_IV);
         conffetiTOP = (ViewGroup) findViewById(R.id.id_victory_conffetiTOP_IV);
-
-        count = (TextView) findViewById(R.id.id_victory_count_VT);
-
-        lastChange = countFrom;
 
         restart = (ImageButton) findViewById(R.id.id_victory_restart_BT);
         restart.setOnClickListener(new View.OnClickListener() {
@@ -151,59 +142,6 @@ public class Victory extends AppCompatActivity {
             tScoreTOP.setText(scoreTOP + ":" + scoreBOT);
         }
         biggerFaces.run();
-
-        final Runnable popDown = new Runnable() {
-            @Override
-            public void run() {
-                count.animate().setDuration(popDuration).scaleXBy(-0.5f).scaleYBy(-0.5f);
-            }
-        };
-
-        final Runnable popUp = new Runnable() {
-            @Override
-            public void run() {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                    count.animate().setDuration(0).scaleXBy(0.5f).scaleYBy(0.5f).withEndAction(popDown);
-                }
-            }
-        };
-
-        new CountDownTimer(delay, delay) {
-
-            @Override
-            public void onTick(long millisUntilFinished) {
-
-            }
-
-            @Override
-            public void onFinish() {
-                new CountDownTimer(countFrom * rythm, 1) {
-
-                    @Override
-                    public void onTick(long millisUntilFinished) {
-                        if (millisUntilFinished / rythm <= lastChange) {
-                            count.setText(Long.toString(lastChange + 4));
-                            popUp.run();
-                            lastChange--;
-                        }
-                    }
-
-                    @Override
-                    public void onFinish() {
-//                Intent i = new Intent(getApplicationContext(), Game.class);
-//                startActivityForResult(i, 1);
-                        count.setText("3");
-                        count.animate().scaleXBy(0.5f).scaleYBy(0.5f).setDuration(0);
-//                Intent i = new Intent(getApplicationContext(), Game.class);
-//                startActivityForResult(i, 5);
-                        setResult(RESULT_OK);
-                        finish();
-                    }
-                }.start();
-            }
-
-        }.start();
-
     }
 
     @Override
@@ -232,12 +170,6 @@ public class Victory extends AppCompatActivity {
         public void run() {
             makeBigger(restart.animate());
             makeBigger(end.animate());
-//            CommonConfetti.explosion(conffetiBOT, backBOT.getWidth()/2, backBOT.getHeight(), new int[] { Color.BLUE, Color.CYAN, Color.GREEN, Color.RED, Color.YELLOW });
-//            CommonConfetti.explosion(conffetiBOT, backBOT.getWidth()/2, backBOT.getHeight(), new int[] { Color.BLUE, Color.CYAN, Color.GREEN, Color.RED, Color.YELLOW })
-//                    .stream(1000).disableFadeOut().setVelocityY(-250, 20).setVelocityX(0,60).setAccelerationY(-150, 60).setNumInitialCount(700).setAccelerationX(0, 60).animate();
-
-//            CommonConfetti.rainingConfetti(conffetiBOT, new int[] { Color.BLUE }).oneShot()
-//                    .setVelocityY(-250, 20).setVelocityX(0,60).setAccelerationY(-150, 60).setNumInitialCount(700).setAccelerationX(0, 60).animate();
         }
 
         private void makeBigger(ViewPropertyAnimator a) {
@@ -254,11 +186,32 @@ public class Victory extends AppCompatActivity {
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
-//        CommonConfetti.explosion(conffetiBOT, backBOT.getWidth()/2, backBOT.getHeight(), new int[] { Color.BLUE, Color.CYAN, Color.GREEN, Color.RED, Color.YELLOW });
-//        CommonConfetti.rainingConfetti(conffetiBOT, new int[] { Color.BLUE, Color.CYAN, Color.GREEN, Color.RED, Color.YELLOW }).infinite();
         if (winner.equals("B"))
             CommonConfetti.rainingConfetti(conffetiBOT, new int[] { Color.rgb(39,40,109) /*Color.BLUE, Color.CYAN, Color.GREEN, Color.RED, Color.YELLOW */}).oneShot().setNumInitialCount(120).setVelocityY(36, 20);
         else
             CommonConfetti.rainingConfetti(conffetiTOP, new int[] { Color.rgb(239,0,0)}).oneShot().setNumInitialCount(120).setVelocityY(36, 20);
+    }
+
+    @Override
+    public void onResume()
+    {
+        super.onResume();
+        mp = MediaPlayer.create(getApplicationContext(), R.raw.hallelujah);
+        mp.start();
+        //mp.seekTo(duration);
+    }
+
+    @Override
+    public void onPause()
+    {
+        super.onPause();
+        if(mp != null) {
+//            duration = mp.getDuration();
+            mp.pause();
+            mp.stop();
+            mp.reset();
+            mp.release();
+        }
+
     }
 }

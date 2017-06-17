@@ -38,7 +38,7 @@
                 android:layout_weight="1"
                 android:layout_height="match_parent">
 
-                <TextView
+                <sorryjako.com.sorryjako.AutoResizeTextView
                     android:id="@+id/id_victory_elseTOP_TV"
                     android:layout_width="match_parent"
                     android:textSize="16dp"
@@ -55,7 +55,7 @@
                 android:layout_weight="1"
                 android:layout_height="match_parent">
 
-                <TextView
+                <sorryjako.com.sorryjako.AutoResizeTextView
                     android:id="@+id/id_victory_scoreTOP_TV"
                     android:layout_width="match_parent"
                     android:textColor="#EF0000"
@@ -73,7 +73,7 @@
                 android:layout_weight="1"
                 android:layout_height="match_parent">
 
-                <TextView
+                <sorryjako.com.sorryjako.AutoResizeTextView
                     android:id="@+id/id_victory_winTOP_TV"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -113,23 +113,6 @@
                 app:srcCompat="@mipmap/replay"
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_weight="1"
-            android:layout_marginLeft="0dp"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <TextView
-                android:id="@+id/id_victory_count_VT"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:text="10"
-                android:textAlignment="center"
-                android:textColor="#FFF"
-                android:textSize="42dp" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -178,7 +161,7 @@
                 android:layout_weight="1"
                 android:layout_height="match_parent">
 
-                <TextView
+                <sorryjako.com.sorryjako.AutoResizeTextView
                     android:id="@+id/id_victory_winBOT_TV"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -196,7 +179,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <TextView
+                <sorryjako.com.sorryjako.AutoResizeTextView
                     android:id="@+id/id_victory_scoreBOT_TV"
                     android:layout_width="match_parent"
                     android:textColor="#27286D"
@@ -212,7 +195,7 @@
                 android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-                <TextView
+                <sorryjako.com.sorryjako.AutoResizeTextView
                     android:id="@+id/id_victory_elseBOT_TV"
                     android:layout_width="match_parent"
                     android:textSize="16dp"

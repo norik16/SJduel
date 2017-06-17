@@ -62,7 +62,6 @@ public class Main extends AppCompatActivity {
         });
 
         Bundle bundle = new Bundle();
-//        bundle.putString(FirebaseAnalytics.Param.ITEM_ID, id);
         bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, "Game opened");
 //        bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "image");
         mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.APP_OPEN, bundle);
