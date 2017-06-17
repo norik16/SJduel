@@ -15,11 +15,11 @@
       },
       "oauth_client": [
         {
-          "client_id": "562038639113-citm1og64knk4fdaljhtrf9gfpvhn6rk.apps.googleusercontent.com",
+          "client_id": "562038639113-i3l1cufqivpqj4er694icv53onpji3vi.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "sorryjako.com.sorryjako",
-            "certificate_hash": "bee06f531c263a0be5d2af24f37581181095920a"
+            "certificate_hash": "f4c430027d577b85bd6b63e8c7ffa8e60e1b0a3a"
           }
         },
         {
