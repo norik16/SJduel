@@ -7,7 +7,7 @@ android {
         applicationId "sorryjako.com.sorryjako"
         minSdkVersion 14
         targetSdkVersion 28
-        versionCode 6
+        versionCode 7
         versionName "2.2"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }

@@ -10,6 +10,9 @@ import android.os.Build;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.method.LinkMovementMethod;
+import android.text.util.Linkify;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +22,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.CompoundButton;
 
@@ -52,7 +56,9 @@ public class Main extends AppCompatActivity {
         CheckBox mCheckBox = mView.findViewById(R.id.checkBox);
 
         mBuilder.setTitle("Zásady ochrany soukromí (GDPR)");
-        mBuilder.setMessage("https://ronaldluc.com/data/sorry_GDPR_jako.pdf");
+        final SpannableString s = new SpannableString("https://ronaldluc.com/data/sorry_GDPR_jako.pdf");
+        Linkify.addLinks(s, Linkify.ALL);
+        mBuilder.setMessage(s);
         mBuilder.setView(mView);
         mBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
@@ -67,7 +73,10 @@ public class Main extends AppCompatActivity {
         });
 
         AlertDialog mDialog = mBuilder.create();
+        mDialog.setCanceledOnTouchOutside(false);
         mDialog.show();
+
+        ((TextView)mDialog.findViewById(android.R.id.message)).setMovementMethod(LinkMovementMethod.getInstance());
 
         mCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
