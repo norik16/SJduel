@@ -1,10 +1,13 @@
 package sorryjako.com.sorryjako;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Build;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,8 +17,12 @@ import android.view.ViewPropertyAnimator;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.Toast;
+import android.widget.CompoundButton;
+
+import com.google.ads.consent.*;
 
 import com.google.firebase.analytics.FirebaseAnalytics;
 
@@ -39,6 +46,59 @@ public class Main extends AppCompatActivity {
         setContentView(R.layout.main);
 
         setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+        AlertDialog.Builder mBuilder = new AlertDialog.Builder(Main.this);
+        View mView = getLayoutInflater().inflate(R.layout.dialog_app_updates, null);
+        CheckBox mCheckBox = mView.findViewById(R.id.checkBox);
+
+        mBuilder.setTitle("Zásady ochrany soukromí (GDPR)");
+        mBuilder.setMessage("https://ronaldluc.com/data/sorry_GDPR_jako.pdf");
+        mBuilder.setView(mView);
+        mBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                if(getDialogStatus()) {
+                    dialogInterface.dismiss();
+                } else {
+                    finish();
+                }
+
+            }
+        });
+
+        AlertDialog mDialog = mBuilder.create();
+        mDialog.show();
+
+        mCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(compoundButton.isChecked()){
+                    storeDialogStatus(true);
+                }else{
+                    storeDialogStatus(false);
+                }
+            }
+        });
+
+        if(getDialogStatus()){
+            mDialog.hide();
+        }else{
+            mDialog.show();
+        }
+
+        /* ConsentInformation consentInformation = ConsentInformation.getInstance(getApplicationContext());
+        String[] publisherIds = {"pub-0123456789012345"};
+        consentInformation.requestConsentInfoUpdate(publisherIds, new ConsentInfoUpdateListener() {
+            @Override
+            public void onConsentInfoUpdated(ConsentStatus consentStatus) {
+                // User's consent status successfully updated.
+            }
+
+            @Override
+            public void onFailedToUpdateConsentInfo(String errorDescription) {
+                Toast.makeText(getApplicationContext(), "sorry", Toast.LENGTH_SHORT).show();
+            }
+        }); */
 
 //        if(mp != null) {
 //            mp.release();
@@ -115,9 +175,9 @@ public class Main extends AppCompatActivity {
             }
         }
         if(requestCode == 2) {
-            if(resultCode == RESULT_OK) {
-                    Intent iii = new Intent(getApplicationContext(), CountDown.class);
-                    startActivityForResult(iii, 1);
+            if (resultCode == RESULT_OK) {
+                Intent iii = new Intent(getApplicationContext(), CountDown.class);
+                startActivityForResult(iii, 1);
             } else {
 //                if(mp != null) {
 //                    mp.release();
@@ -126,8 +186,18 @@ public class Main extends AppCompatActivity {
 //                mp.start();
             }
         }
+    }
 
+    private void storeDialogStatus(boolean isChecked){
+        SharedPreferences mSharedPreferences = getSharedPreferences("CheckItem", MODE_PRIVATE);
+        SharedPreferences.Editor mEditor = mSharedPreferences.edit();
+        mEditor.putBoolean("item", isChecked);
+        mEditor.apply();
+    }
 
+    private boolean getDialogStatus(){
+        SharedPreferences mSharedPreferences = getSharedPreferences("CheckItem", MODE_PRIVATE);
+        return mSharedPreferences.getBoolean("item", false);
     }
 
     @Override
